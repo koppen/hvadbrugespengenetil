@@ -1,29 +1,31 @@
-%h1
-  Poster - ialt
-  = number_to_currency(@total_amount)
+%header
+  %h1 Hvad bruges pengene til
 
-= form_tag('', :method => :get) do
-  = text_field_tag :tax_payment, @tax_payment
-  = submit_tag 'Beregn'
+%section.input
+  = form_tag('', :method => :get) do
+    = label_tag :tax_payment, "Hvor meget betalte du i skat i #{@year}?"
+    = text_field_tag :tax_payment, @tax_payment
+    = submit_tag 'Beregn'
 
-- unless @tax_payment.blank?
-  %table
-    %thead
-      %tr
-        %th Konto
-        %th Budget
-        %th %
-        %th Din andel
-    %tbody
-      - @accounts.each do |account|
+%section.result
+  - unless @tax_payment.blank?
+    %table
+      %thead
         %tr
-          %td= account.name
-          %td= account.amount
-          %td= number_to_percentage(account.percentage_of_total)
-          %td= number_to_currency(account.amount_of_tax_payment(@tax_payment))
-    %tfoot
-      %tr
-        %th
-        %th= number_to_currency(@total_amount)
-        %th
-        %th= number_to_currency(@tax_payment)
+          %th{:scope => 'col'} Konto
+          %th.amount{:scope => 'col'} Budget
+          %th.percentage{:scope => 'col'} %
+          %th.amount{:scope => 'col'} Din andel
+      %tbody
+        - @accounts.each do |account|
+          %tr
+            %th{:scope => 'row'}= account.name
+            %td.amount= number_to_currency(account.amount)
+            %td.percentage= number_to_percentage(account.percentage_of_total)
+            %td.amount= number_to_currency(account.amount_of_tax_payment(@tax_payment))
+      %tfoot
+        %tr
+          %td
+          %td.amount= number_to_currency(@total_amount)
+          %td
+          %td.amount= number_to_currency(@tax_payment)
