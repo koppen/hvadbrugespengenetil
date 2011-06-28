@@ -13,19 +13,16 @@
       %thead
         %tr
           %th{:scope => 'col'} Konto
-          %th.amount{:scope => 'col'} Budget
           %th.percentage{:scope => 'col'} %
           %th.amount{:scope => 'col'} Din andel
       %tbody
         - @accounts.each do |account|
           %tr
             %th{:scope => 'row'}= account.name
-            %td.amount= number_to_currency(account.amount)
             %td.percentage= number_to_percentage(account.percentage_of_total)
             %td.amount= number_to_currency(account.amount_of_tax_payment(@tax_payment))
       %tfoot
         %tr
           %td
-          %td.amount= number_to_currency(@total_amount)
           %td
           %td.amount= number_to_currency(@tax_payment)
