@@ -1,0 +1,24 @@
+%h1
+  Poster - ialt
+  = number_to_currency(@total_amount)
+
+%table
+  %thead
+    %tr
+      %th Konto
+      %th Budget
+      %th %
+      %th Din andel
+  %tbody
+    - @accounts.each do |account|
+      %tr
+        %td= account.name
+        %td= number_to_currency(account.amount)
+        %td= number_to_percentage(account.amount / @total_amount)
+        %td= number_to_currency(@tax_amount * account.amount / @total_amount)
+  %tfoot
+    %tr
+      %th 
+      %th= number_to_currency(@total_amount)
+      %th 
+      %th= number_to_currency(@tax_amount)
