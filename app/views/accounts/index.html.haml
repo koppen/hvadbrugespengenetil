@@ -14,8 +14,8 @@
       %tr
         %td= account.name
         %td= number_to_currency(account.amount)
-        %td= number_to_percentage(account.amount / @total_amount)
-        %td= number_to_currency(@tax_amount * account.amount / @total_amount)
+        %td= number_to_percentage(account.percentage_of_total)
+        %td= number_to_currency(account.amount_of_tax_payment(@tax_amount))
   %tfoot
     %tr
       %th 
