@@ -11,6 +11,8 @@ gem 'silent-postgres'
 gem 'haml'
 gem 'sass'
 
+gem 'fastercsv'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

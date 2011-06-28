@@ -1,11 +1,39 @@
 class Account < ActiveRecord::Base
   default_scope order(:key)
 
+  scope :expense, where('amount > 0') # Amount is flipped, positive numbers are expenses
+  scope :income, where('amount < 0') # Amount is flipped, negative numbers are income
+
   class << self
 
-    # Returns the total budget amount for year in millions
+    # Returns the total budget expenses for year in millions
     def total(year)
-      sum(:amount, :conditions => {:year => year})
+      expense.sum(:amount, :conditions => {:year => year})
+    end
+
+    def import_from_csv(file, year = nil)
+      year = (year || Date.today.year).to_s
+
+      Account.transaction do
+        # Remove the existing accounts for the year
+        Account.where(:year => year).destroy_all
+
+        FasterCSV.foreach(file, :col_sep => ';', :headers => :first_row) do |row|
+          title = row[0]
+          key, name = title.split(' ', 2)
+
+          # We get amounts formatted like "4.234,1" when we want "4234.1" (or "4_234.1")
+          amount = row[year.to_s]
+          amount = amount.tr('.,', '_.')
+
+          Account.create(
+            :key => key,
+            :name => name,
+            :amount => amount,
+            :year => year
+          )
+        end
+      end
     end
 
   end
