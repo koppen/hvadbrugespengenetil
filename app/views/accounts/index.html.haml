@@ -2,23 +2,28 @@
   Poster - ialt
   = number_to_currency(@total_amount)
 
-%table
-  %thead
-    %tr
-      %th Konto
-      %th Budget
-      %th %
-      %th Din andel
-  %tbody
-    - @accounts.each do |account|
+= form_tag('', :method => :get) do
+  = text_field_tag :tax_payment, @tax_payment
+  = submit_tag 'Beregn'
+
+- unless @tax_payment.blank?
+  %table
+    %thead
       %tr
-        %td= account.name
-        %td= account.amount
-        %td= number_to_percentage(account.percentage_of_total)
-        %td= number_to_currency(account.amount_of_tax_payment(@tax_amount))
-  %tfoot
-    %tr
-      %th 
-      %th= number_to_currency(@total_amount)
-      %th 
-      %th= number_to_currency(@tax_amount)
+        %th Konto
+        %th Budget
+        %th %
+        %th Din andel
+    %tbody
+      - @accounts.each do |account|
+        %tr
+          %td= account.name
+          %td= account.amount
+          %td= number_to_percentage(account.percentage_of_total)
+          %td= number_to_currency(account.amount_of_tax_payment(@tax_payment))
+    %tfoot
+      %tr
+        %th
+        %th= number_to_currency(@total_amount)
+        %th
+        %th= number_to_currency(@tax_payment)
