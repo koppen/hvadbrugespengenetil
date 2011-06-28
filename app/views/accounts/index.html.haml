@@ -6,7 +6,7 @@
 %section.input
   = form_tag('', :method => :get) do
     = label_tag :tax_payment, "Hvor meget betalte du i skat i #{@year}?"
-    = text_field_tag :tax_payment, @tax_payment
+    = text_field_tag :tax_payment, @tax_payment, {:placeholder => "fx #{(rand(200) + 50)*1000}"}
     = submit_tag 'Beregn'
 
 %section.result
