@@ -10,6 +10,7 @@ gem 'silent-postgres'
 
 gem 'haml'
 gem 'sass'
+gem 'compass'
 
 gem 'fastercsv'
 
