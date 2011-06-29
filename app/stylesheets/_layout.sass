@@ -4,6 +4,20 @@ body
   color: $text_color
   font-size: 1em
 
+a
+  &:link
+    color: $link_color
+    text-decoration: none
+  &:visited
+    color: $link_color
+    text-decoration: none
+  &:hover
+    color: lighten($link_color, 50%)
+    text-decoration: underline
+  &:active
+    color: $link_color
+
+
 h1
   font-family: 'Crimson Text', serif
   font-size: 1.6em * 1.6
