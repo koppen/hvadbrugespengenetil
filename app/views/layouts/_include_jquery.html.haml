@@ -1,0 +1,7 @@
+= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js'
+-# Load from Microsoft if Google fails
+= javascript_tag do
+  window.jQuery || document.write('<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js">\x3C/script>')
+-# Load from jQuery if Microsoft also fails
+= javascript_tag do
+  window.jQuery || document.write('<script src="//code.jquery.com/jquery-1.6.1.min.js">\x3C/script>')
