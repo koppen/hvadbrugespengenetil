@@ -1,5 +1,5 @@
 class Account < ActiveRecord::Base
-  default_scope order(:key)
+  default_scope order('amount DESC')
 
   scope :expense, where('amount > 0') # Amount is flipped, positive numbers are expenses
   scope :income, where('amount < 0') # Amount is flipped, negative numbers are income
