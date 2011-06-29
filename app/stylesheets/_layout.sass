@@ -3,6 +3,7 @@ body
   border-top: 0.5em solid $finansministeriet_blue
   color: $text_color
   font-size: 1em
+  line-height: 1.6em
 
 a
   &:link
@@ -36,6 +37,16 @@ article
 
 section
   margin: 2em 0
+
+footer
+  background: $footer_color
+  +background(linear-gradient(top, $footer_color, #ffffff))
+  font-size: 0.625em
+  font-family: arial, sans-serif
+  line-height: 1.6em
+  padding: 2em
+  p
+    text-align: center
 
 form
   $top_color: saturate(lighten($finansministeriet_blue, 66%), 66%)

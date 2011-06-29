@@ -17,6 +17,21 @@
     %article
       = yield
 
+    %footer
+      %article
+        %p
+          Tallene er baseret på data fra Finansministeriets
+          = link_to('Finanslovsdatabase', 'http://www.oes-cs.dk/olapdatabase/finanslov/index.cgi') + '.'
+          Finansministeriet har derudover intet med dette website at gøre
+        %p
+          = link_to 'Hvad bruges pengene til', root_url
+          == &copy;#{[2011, Date.today.year].uniq.join(' - ')}
+          = link_to('Jakob Skjerning', 'http://mentalized.net', :title => 'Freelance udvikler af web applikationer') + ','
+          som iøvrigt fraskriver sig alt ansvar for tallenes korrekthed
+        %p
+          Fugue Icons by
+          = link_to 'Yusuke Kamiyamane', 'http://p.yusukekamiyamane.com/'
+
   = render 'layouts/include_jquery'
 
   = javascript_include_tag :defaults
