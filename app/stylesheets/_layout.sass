@@ -25,7 +25,6 @@ h1
   font-size: 1.6em * 1.6
   font-weight: bold
   letter-spacing: -0.05em
-
   & + div
     +background(radial-gradient(top, rgba(0,0,0,0.1), rgba(0,0,0,0) 300px) repeat-x)
     height: 2em
@@ -84,37 +83,37 @@ table
     padding: 0.3em 0.6em
   th
     font-weight: bold
-  tbody
-    border-top: 1px solid $text_color
-    td, th
-      background: $row_color
-      border-top: 1px solid #ffffff
-    tr:first-child
-      td, th
-        border: 0
-  tfoot
-    border-top: 1px solid $text_color
-    td
-      font-weight: bold
   .amount
     text-align: right
   .percentage
     text-align: right
-  .child
+tbody
+  border-top: 1px solid $text_color
+  td, th
+    background: $row_color
+    border-top: 1px solid #ffffff
+  tr:first-child
     td, th
-      background: white
-      border-top: 1px solid $row_color
-      color: lighten($text_color, 33%)
-    th
-      padding-left: 1.8em // Should really be 20px + 0.3em
+      border: 0
+tfoot
+  border-top: 1px solid $text_color
+  td
+    font-weight: bold
+.child
+  td, th
+    background: white
+    border-top: 1px solid $row_color
+    color: lighten($text_color, 33%)
+  th
+    padding-left: 1.8em // Should really be 20px + 0.3em
 
 tr
   a.toggle
     background: url(/images/icons/fugue/16x16/toggle-expand.png) 0% 50% no-repeat
     padding-left: 20px
     text-indent: -1000em
-  &.expanded
-    td
-      font-weight: bold
-    a.toggle
-      background-image: url(/images/icons/fugue/16x16/toggle.png)
+.expanded
+  td
+    font-weight: bold
+  .toggle
+    background-image: url(/images/icons/fugue/16x16/toggle.png)
