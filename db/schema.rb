@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20110628190705) do
     t.string   "key"
     t.decimal  "amount"
     t.integer  "year"
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

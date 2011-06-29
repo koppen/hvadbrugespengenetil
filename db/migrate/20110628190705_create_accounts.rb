@@ -5,6 +5,7 @@ class CreateAccounts < ActiveRecord::Migration
       t.string :key
       t.decimal :amount
       t.integer :year
+      t.integer :parent_id
 
       t.timestamps
     end

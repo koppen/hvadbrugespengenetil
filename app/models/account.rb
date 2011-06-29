@@ -1,14 +1,20 @@
 class Account < ActiveRecord::Base
   default_scope order('amount DESC')
 
-  scope :expense, where('amount > 0') # Amount is flipped, positive numbers are expenses
+  scope :expenses, where('amount > 0') # Amount is flipped, positive numbers are expenses
   scope :income, where('amount < 0') # Amount is flipped, negative numbers are income
+
+  # Returns all the top level accounts (ie 'Paragraffer')
+  scope :top_level, where({:parent_id => nil})
+
+  belongs_to :parent, :class_name => name
+  has_many :children, :class_name => name, :inverse_of => :parent, :foreign_key => 'parent_id'
 
   class << self
 
     # Returns the total budget expenses for year in millions
     def total(year)
-      expense.sum(:amount, :conditions => {:year => year})
+      top_level.expenses.sum(:amount, :conditions => {:year => year})
     end
 
     def import_from_csv(file, year = nil)
@@ -19,18 +25,30 @@ class Account < ActiveRecord::Base
         Account.where(:year => year).destroy_all
 
         FasterCSV.foreach(file, :col_sep => ';', :headers => :first_row) do |row|
+          puts "row: #{row.inspect}"
           title = row[0]
-          key, name = title.split(' ', 2)
+          key, name = title.split(' ', 2).collect(&:strip)
 
           # We get amounts formatted like "4.234,1" when we want "4234.1" (or "4_234.1")
           amount = row[year.to_s]
           amount = amount.tr('.,', '_.')
 
+          # Top level or sub-account ('Paragraf' or 'Hovedområde')?
+          parent = if key.length == 2
+            # Top level
+            nil
+          else
+            # Sub account, find the parent
+            parent_key = key.first(2)
+            Account.find_by_key(parent_key)
+          end
+
           Account.create(
             :key => key,
             :name => name,
             :amount => amount,
-            :year => year
+            :year => year,
+            :parent => parent
           )
         end
       end
