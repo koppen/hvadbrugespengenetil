@@ -2,12 +2,17 @@ $(document).ready(function() {
   $('.child').hide();
 
   $('.parent th').each(function(index, node) {
+    var node = $(node);
+
+    // Create a link to replace the existing content of the th
     var toggle = $(document.createElement('a'));
     toggle.attr({ href: '#' });
-    toggle.html('+');
+    toggle.html(node.html());
     toggle.addClass('toggle');
+
+    // Hook up a click event to the link that toggles display of child accounts
     toggle.click(function(event) {
-      var parentId = $(this).parents('tr.parent').attr('id');
+      var parentId = $(this).parents('tr.parent').toggleClass('expanded').attr('id');
       if (parentId) {
         $('tr.child.' + parentId).toggle();
       };
@@ -15,7 +20,7 @@ $(document).ready(function() {
       event.stopPropagation();
       return false;
     });
-    $(node).prepend(toggle);
+    $(node).html(toggle);
   });
 });
 
