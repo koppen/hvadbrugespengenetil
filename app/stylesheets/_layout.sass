@@ -17,19 +17,26 @@ section
   margin: 2em 0
 
 form
-  background: $finansministeriet_blue
-  color: #ffffff
-  padding: 1em
+  $top_color: saturate(lighten($finansministeriet_blue, 66%), 66%)
+  $bottom_color: lighten($finansministeriet_blue, 33%)
+  background: $top_color
+  +background(linear-gradient(top, $top_color, $bottom_color))
+  margin-left: -2em
+  padding: 1em 2em
   text-align: center
+  width: 100%
   label
     display: block
     font-size: 1.6em
     cursor: pointer
+    margin-bottom: 1rem
   input
+    font-family: inherit
     font-size: 1em
     text-align: center
     width: 6em
   button
+    +fancy-button($finansministeriet_blue)
     clear: both
     font-size: 1.6em
 

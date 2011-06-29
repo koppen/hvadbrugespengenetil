@@ -11,6 +11,7 @@ gem 'silent-postgres'
 gem 'haml'
 gem 'sass'
 gem 'compass'
+gem 'fancy-buttons'
 
 group :production do
   gem 'hassle', :git => 'https://github.com/jasoncodes/hassle.git'
