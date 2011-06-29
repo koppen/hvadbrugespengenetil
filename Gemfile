@@ -11,6 +11,7 @@ gem 'silent-postgres'
 gem 'haml'
 gem 'sass'
 gem 'compass'
+gem 'hassle', :git => 'https://github.com/jasoncodes/hassle.git'
 
 gem 'fastercsv'
 
@@ -36,3 +37,8 @@ gem 'fastercsv'
 # group :development, :test do
 #   gem 'rspec'
 # end
+
+group :development do
+  gem 'heroku'
+  gem 'taps'
+end
