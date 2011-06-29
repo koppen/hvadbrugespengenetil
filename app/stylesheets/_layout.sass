@@ -1,5 +1,6 @@
 body
-  +background(linear-gradient(top, #f0f0f0, #ffffff 300px))
+  background: #ffffff
+  +background(linear-gradient(top, #f0f0f0, #ffffff 300px) repeat-x)
   border-top: 0.5em solid $finansministeriet_blue
   color: $text_color
   font-size: 1em
@@ -25,9 +26,12 @@ h1
   font-weight: bold
   letter-spacing: -0.05em
 
+  & + div
+    +background(radial-gradient(top, rgba(0,0,0,0.1), rgba(0,0,0,0) 300px) repeat-x)
+    height: 2em
+
 article
-  margin-left: auto
-  margin-right: auto
+  margin: 4em auto
   max-width: 650px
   width: 75%
 
@@ -45,6 +49,8 @@ footer
   font-family: arial, sans-serif
   line-height: 1.6em
   padding: 2em
+  article
+    margin: 1em auto
   p
     text-align: center
 
