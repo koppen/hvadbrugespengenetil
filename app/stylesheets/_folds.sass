@@ -1,0 +1,25 @@
+@mixin folds($size: 20px, $color: #333333)
+  margin-left: -$size
+  padding-left: $size
+  padding-right: $size
+  position: relative
+  width: 100%
+  &:before, &:after
+    content: ''
+    display: block
+    position: absolute
+    top: -$size/2
+    border: $size/2 solid $color
+    border-top-width: 0
+  &:after
+    right: 0
+    border-right-color: transparent
+    border-top-width: 0
+    border-left-width: 0
+    border-right-width: $size
+  &:before
+    left: 0
+    border-left-color: transparent
+    border-top-width: 0
+    border-right-width: 0
+    border-left-width: $size

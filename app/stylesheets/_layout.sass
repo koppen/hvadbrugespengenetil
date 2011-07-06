@@ -1,11 +1,10 @@
 body
-  background: #ffffff
-  +background(linear-gradient(top, #f0f0f0, #ffffff 300px) repeat-x)
-  border-top: 0.5em solid $finansministeriet_blue
+  background: #ccc
   color: $text_color
   font-size: 1em
   line-height: 1.6em
   font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif
+  margin: 0
 
 a
   &:link
@@ -25,40 +24,41 @@ h1
   font-size: 1.6em * 1.6
   font-weight: bold
   letter-spacing: -0.05em
-  & + div
-    +background(radial-gradient(top, rgba(0,0,0,0.1), rgba(0,0,0,0) 300px) repeat-x)
-    height: 2em
 
 article
-  margin: 4em auto
+  background: #ffffff
+  +box-shadow(rgba(0,0,0,0.5) 0 0 1em)
+  margin: 2em auto
   max-width: 650px
   width: 75%
 
   header
-    margin: 2em 0
+    background: $finansministeriet_blue
+    +background(linear-gradient(top, $finansministeriet_blue 66%, darken($finansministeriet_blue, 10%)))
+    color: #ffffff
+    padding: 2em 0 1.6em 0
     text-align: center
+    text-shadow: rgba(0,0,0,0.5) 0.1em 0.1em 0.1em
 
 section
   margin: 2em 0
 
 footer
-  background: $footer_color
-  +background(linear-gradient(top, $footer_color, #ffffff))
   font-size: 0.625em
   font-family: arial, sans-serif
   line-height: 1.6em
   padding: 2em
   article
-    margin: 1em auto
+    background: inherit
+    +box-shadow(none)
+    margin: 0 auto
   p
-    text-align: left
+    text-align: center
 
 form
   background: saturate(lighten($finansministeriet_blue, 66%), 66%)
-  margin-left: -2em
-  padding: 1em 2em
+  padding: 1em
   text-align: center
-  width: 100%
   label
     display: block
     font-size: 1.6em
@@ -73,6 +73,11 @@ form
     +fancy-button($finansministeriet_blue)
     clear: both
     font-size: 1.6em
+  +folds(2em, $finansministeriet_blue)
+
+.result
+  padding-bottom: 2em
+
 
 table
   width: 100%
@@ -80,14 +85,16 @@ table
     padding: 0.3em 0.6em
   th
     font-weight: bold
+    padding-left: 2em
   .amount
+    padding-right: 2em
     text-align: right
     width: 7em
   .percentage
     text-align: right
     width: 3em
+
 tbody
-  border-top: 1px solid $text_color
   td, th
     background: $row_color
     border-top: 1px solid #ffffff
@@ -95,7 +102,6 @@ tbody
     td, th
       border: 0
 tfoot
-  border-top: 1px solid $text_color
   td
     font-weight: bold
 .child
@@ -104,7 +110,7 @@ tfoot
     border-top: 1px solid $row_color
     color: lighten($text_color, 33%)
   th
-    padding-left: 1.8em // Should really be 20px + 0.3em
+    padding-left: 3.2em // Should really be 2em + 20px + 0.3em
 
 tr
   a.toggle
