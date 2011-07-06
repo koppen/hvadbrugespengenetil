@@ -54,10 +54,7 @@ footer
     text-align: left
 
 form
-  $top_color: saturate(lighten($finansministeriet_blue, 66%), 66%)
-  $bottom_color: lighten($finansministeriet_blue, 33%)
-  background: $top_color
-  +background(linear-gradient(top, $top_color, $bottom_color))
+  background: saturate(lighten($finansministeriet_blue, 66%), 66%)
   margin-left: -2em
   padding: 1em 2em
   text-align: center
