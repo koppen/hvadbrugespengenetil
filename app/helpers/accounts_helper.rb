@@ -5,7 +5,7 @@ module AccountsHelper
   end
 
   def format_amount(amount)
-    number_to_currency(amount, :unit => 'kr. ', :format => '%n %u', :delimiter => '.', :separator => ',')
+    number_to_currency(amount.round, :unit => 'kr. ', :format => '%n %u', :delimiter => '.', :separator => ',', :precision => 0)
   end
 
 end
