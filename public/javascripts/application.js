@@ -23,6 +23,12 @@ $(document).ready(function() {
     $(node).html(toggle);
   });
 
-  $('#tax_payment').numeric({ decimal: false, negative: false });
+  $('#tax_payment').bind('change', function(event) {
+    value = $(event.currentTarget).val();
+    if (value) {
+      value = value.replace(/[^0-9]/g, '');
+      $(event.currentTarget).val(value);
+    };
+  });
 });
 
