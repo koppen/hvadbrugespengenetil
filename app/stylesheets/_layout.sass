@@ -1,5 +1,7 @@
+html
+  background: #cccccc // For some reason IE8 won't display the background color if set on body
+
 body
-  background: #ccc
   color: $text_color
   font-size: 1em
   line-height: 1.6em
@@ -19,11 +21,13 @@ a
   &:active
     color: $link_color
 
-
 h1
   font-size: 1.6em * 1.6
   font-weight: bold
   letter-spacing: -0.05em
+
+article, footer, header, section
+  display: block
 
 article
   background: #ffffff
@@ -44,6 +48,7 @@ section
   margin: 2em 0
 
 footer
+  color: lighten($text_color, 25%)
   font-size: 0.625em
   font-family: arial, sans-serif
   line-height: 1.6em
@@ -63,7 +68,6 @@ form
     display: block
     font-size: 1.6em
     cursor: pointer
-    margin-bottom: 1rem
   input
     font-family: inherit
     font-size: 1em
@@ -73,7 +77,8 @@ form
     +fancy-button($finansministeriet_blue)
     clear: both
     font-size: 1.6em
-  +folds(2em, $finansministeriet_blue)
+    margin-top: 0.5em
+  +folds(40px, $finansministeriet_blue)
 
 .result
   padding-bottom: 2em
@@ -89,7 +94,7 @@ table
   .amount
     padding-right: 2em
     text-align: right
-    width: 7em
+    width: 8em
   .percentage
     text-align: right
     width: 3em

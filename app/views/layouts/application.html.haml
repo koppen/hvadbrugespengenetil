@@ -9,7 +9,8 @@
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
     /[if lt IE 7]
       = stylesheet_link_tag 'ie6.css', :media => 'screen, projection'
-
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = csrf_meta_tag
 
   %body
