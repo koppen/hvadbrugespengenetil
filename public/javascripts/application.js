@@ -22,5 +22,7 @@ $(document).ready(function() {
     });
     $(node).html(toggle);
   });
+
+  $('#tax_payment').numeric({ decimal: false, negative: false });
 });
 

@@ -20,17 +20,17 @@
     %footer
       %article
         %p
+          Tallene er baseret på data fra
+          = link_to('Danmarks Statistikbank', 'http://www.statbank.dk/OFF23')
+        %p
           = link_to 'Hvad bruges pengene til', root_url
           == &copy;#{[2011, Date.today.year].uniq.join(' - ')}
-          = link_to('Jakob Skjerning', 'http://mentalized.net', :title => 'Freelance udvikler af web applikationer') + ','
-          som iøvrigt fraskriver sig alt ansvar for tallenes korrekthed.
-        %p
-          Tallene er baseret på data fra
-          = link_to('Danmarks Statistikbank', 'http://www.statbank.dk/OFF23') + '.'
+          = link_to('Jakob Skjerning', 'http://mentalized.net', :title => 'Freelance udvikler af web applikationer')
         %p
           Fugue Icons by
-          = link_to('Yusuke Kamiyamane', 'http://p.yusukekamiyamane.com/') + '.'
+          = link_to('Yusuke Kamiyamane', 'http://p.yusukekamiyamane.com/')
 
   = render 'layouts/include_jquery'
 
   = javascript_include_tag :defaults
+  = javascript_include_tag "vendor/jquery.numeric.js"
