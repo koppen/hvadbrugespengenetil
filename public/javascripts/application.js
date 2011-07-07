@@ -30,5 +30,7 @@ $(document).ready(function() {
       $(event.currentTarget).val(value);
     };
   });
-});
 
+  // Setup goal tracking
+  $('form').submit(function() { if (_gaq) { _gaq.push(['_trackPageview', '/g/results/calculated']); }});
+});
