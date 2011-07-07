@@ -15,7 +15,7 @@ class Account < ActiveRecord::Base
 
     # Returns the total budget expenses for year in millions
     def total(year)
-      top_level.expenses.sum(:amount, :conditions => {:year => year})
+      top_level.expenses.where(:year => year).sum(:amount)
     end
     memoize :total
 
