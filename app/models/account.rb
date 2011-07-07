@@ -11,11 +11,13 @@ class Account < ActiveRecord::Base
   has_many :children, :class_name => name, :inverse_of => :parent, :foreign_key => 'parent_id'
 
   class << self
+    extend ActiveSupport::Memoizable
 
     # Returns the total budget expenses for year in millions
     def total(year)
       top_level.expenses.sum(:amount, :conditions => {:year => year})
     end
+    memoize :total
 
     def import_from_csv(file, year = nil)
       year = (year || Date.today.year).to_s
@@ -105,5 +107,4 @@ class Account < ActiveRecord::Base
   def amount_of_tax_payment(total_tax_payment)
     total_tax_payment * self.amount / Account.total(self.year)
   end
-
 end
