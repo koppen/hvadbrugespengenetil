@@ -62,8 +62,11 @@ footer
     background: inherit
     +box-shadow(none)
     margin: 0 auto
-  p
     text-align: center
+  p
+    display: inline
+    &:after, &:first-child:before
+      content: ' • '
 
 form
   background: saturate(lighten($finansministeriet_blue, 66%), 66%)

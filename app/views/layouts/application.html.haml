@@ -28,16 +28,25 @@
 
     %footer
       %article
-        %p
-          Tallene er baseret på data fra
-          = link_to('Danmarks Statistikbank', 'http://www.statbank.dk/OFF23')
-        %p
-          = link_to 'Hvad bruges pengene til', root_url
-          == &copy;#{[2011, Date.today.year].uniq.join(' - ')}
-          = link_to('Jakob Skjerning', 'http://mentalized.net', :title => 'Freelance udvikler af web applikationer')
-        %p
-          Fugue Icons by
-          = link_to('Yusuke Kamiyamane', 'http://p.yusukekamiyamane.com/')
+        %div
+          %p
+            = link_to 'Hvad bruges pengene til', root_url
+            == &copy;#{[2011, Date.today.year].uniq.join(' - ')}
+            = link_to('Jakob Skjerning', 'http://mentalized.net', :title => 'Freelance Ruby on Rails programmør')
+          %p
+            Andre
+            = link_to('Substance Lab', 'http://substancelab.com', :title => 'Web application development experts')
+            projekter:
+            = link_to 'FlowToDo', 'http://flowtodo.com', :title => 'Task tracking tool that actually helps you get things done and stay away from stress'
+            = link_to 'Objectpush', 'http://objectpush.com', :title => 'Push incoming emails to your web application using HTTP and JSON'
+            = link_to 'Progress Wars', 'http://progresswars.com', :title => 'No mafias, no vikings, no pirates - just pure, uninterrupted progress bars'
+        %div
+          %p
+            Tallene er baseret på data fra
+            = link_to('Danmarks Statistikbank', 'http://www.statbank.dk/OFF23')
+          %p
+            Fugue Icons by
+            = link_to('Yusuke Kamiyamane', 'http://p.yusukekamiyamane.com/')
 
   = render 'layouts/include_jquery'
 
