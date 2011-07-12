@@ -1,8 +1,8 @@
 class Account < ActiveRecord::Base
-  default_scope order('amount DESC')
+  default_scope order('accounts.amount DESC')
 
-  scope :expenses, where('amount > 0') # Amount is flipped, positive numbers are expenses
-  scope :income, where('amount < 0') # Amount is flipped, negative numbers are income
+  scope :expenses, where('accounts.amount > 0') # Amount is flipped, positive numbers are expenses
+  scope :income, where('acounts.amount < 0') # Amount is flipped, negative numbers are income
 
   # Returns all the top level accounts (ie 'Paragraffer')
   scope :top_level, where({:parent_id => nil})
