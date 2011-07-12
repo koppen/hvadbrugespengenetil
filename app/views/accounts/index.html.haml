@@ -1,12 +1,13 @@
 %section.input
   = form_tag(root_url, :method => :get) do
+    = hidden_field_tag :year, @year
     = label_tag :tax_payment do
       I
       = @year
-      betalte jeg
+      = past_or_future(@year, "betalte jeg", "betaler jeg")
       = amount_input_tag :tax_payment, @tax_payment
       kr. i skat
-    %button Hvad blev de brugt til?
+    %button= past_or_future(@year, 'Hvad blev de brugt til?', 'Hvad bliver de brugt til?')
 
 %section.result
   - unless @tax_payment.blank?

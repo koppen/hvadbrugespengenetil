@@ -20,4 +20,13 @@ module AccountsHelper
     text_field_tag name, value, options
   end
 
+  def past_or_future(year, past, future)
+    current_year = Time.now.year
+    if year.to_i < current_year
+      past
+    else
+      future
+    end
+  end
+
 end

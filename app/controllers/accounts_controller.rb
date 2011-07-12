@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
 
   def index
-    @year = 2010
+    @year = params[:year] || 2010
 
     @tax_payment = params[:tax_payment]
     @tax_payment = (@tax_payment.to_i rescue nil)

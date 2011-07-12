@@ -19,7 +19,7 @@ class Account < ActiveRecord::Base
     end
     memoize :total
 
-    def import_from_csv(file, year = nil)
+    def import_from_finanslov(file, year = nil)
       year = (year || Date.today.year).to_s
 
       Account.transaction do
