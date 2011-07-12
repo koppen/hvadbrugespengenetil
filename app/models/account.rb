@@ -10,6 +10,8 @@ class Account < ActiveRecord::Base
   belongs_to :parent, :class_name => name
   has_many :children, :class_name => name, :inverse_of => :parent, :foreign_key => 'parent_id'
 
+  before_save :remove_abbreviations_from_name
+
   class << self
     extend ActiveSupport::Memoizable
 
@@ -82,7 +84,7 @@ class Account < ActiveRecord::Base
             nil
           else
             # Sub account, find the parent
-            Account.find_by_key(key_parts.first)
+            Account.where(:year => year, :key => key_parts.first).first
           end
 
           Account.create(
@@ -107,4 +109,12 @@ class Account < ActiveRecord::Base
   def amount_of_tax_payment(total_tax_payment)
     total_tax_payment * self.amount / Account.total(self.year)
   end
+
+private
+
+  def remove_abbreviations_from_name
+    self.name = (self.name || '').gsub('F & U', 'Forskning og Udvikling')
+    true # Don't break save chain
+  end
+
 end
