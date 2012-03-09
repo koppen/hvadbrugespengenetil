@@ -21,6 +21,7 @@ class Account < ActiveRecord::Base
     end
     memoize :total
 
+    # Imports data exported from http://www.oes-cs.dk/olapdatabase/finanslov/index.cgi
     def import_from_finanslov(file, year = nil)
       year = (year || Date.today.year).to_s
 
@@ -44,7 +45,7 @@ class Account < ActiveRecord::Base
           else
             # Sub account, find the parent
             parent_key = key.first(2)
-            Account.find_by_key(parent_key)
+            Account.find_by_year_and_key(year, parent_key)
           end
 
           Account.create(
