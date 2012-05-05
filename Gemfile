@@ -18,6 +18,7 @@ group :production do
 end
 
 gem 'fastercsv'
+gem 'iconv'
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -25,11 +25,15 @@ class Account < ActiveRecord::Base
     def import_from_finanslov(file, year = nil)
       year = (year || Date.today.year).to_s
 
+      # Fix CSV. OES-CS returns the CSV in ISO8859-1, with "\r\n" as newlines.
+      lines = File.readlines(file).map(&:strip).join("\n")
+      lines = Iconv.conv('utf-8', 'iso-8859-1', lines)
+
       Account.transaction do
         # Remove the existing accounts for the year
         Account.where(:year => year).destroy_all
 
-        FasterCSV.foreach(file, :col_sep => ';', :headers => :first_row) do |row|
+        FasterCSV.parse(lines, :col_sep => ';', :headers => :first_row) do |row|
           puts "row: #{row.inspect}"
           title = row[0]
           key, name = title.split(' ', 2).collect(&:strip)

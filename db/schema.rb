@@ -22,4 +22,6 @@ ActiveRecord::Schema.define(:version => 20110628190705) do
     t.datetime "updated_at"
   end
 
+  add_index "accounts", ["amount", "year"], :name => "index_accounts_on_amount_and_year"
+
 end
