@@ -18,7 +18,6 @@ group :production do
 end
 
 gem 'fastercsv'
-gem 'iconv'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -45,5 +44,6 @@ gem 'iconv'
 
 group :development do
   gem 'heroku'
+  gem 'iconv'
   gem 'taps'
 end
