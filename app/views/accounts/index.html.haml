@@ -24,7 +24,7 @@
               %th{:scope => 'row'}= account.name
               %td.percentage= number_to_percentage(account.percentage_of_total)
               %td.amount= format_amount(account.amount_of_tax_payment(@tax_payment))
-            - account.children.each do |child|
+            - account.children.expenses.each do |child|
               %tr{:class => ['child', dom_id(account)]}
                 %th{:scope => 'row'}= child.name
                 %td.percentage= number_to_percentage(child.percentage_of_total)
