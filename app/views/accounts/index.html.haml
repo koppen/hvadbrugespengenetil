@@ -6,7 +6,7 @@
       = @year
       = past_or_future(@year, "betalte jeg", "betaler jeg")
       = amount_input_tag :tax_payment, @tax_payment
-      kr. i skat til staten
+      kr. i skat
     %button= past_or_future(@year, 'Hvad blev de brugt til?', 'Hvad bliver de brugt til?')
 
 %section.result
@@ -28,7 +28,7 @@
                 %td.amount= format_amount(child.amount_of_tax_payment(@state_tax))
         %tfoot
           %tr
-            %td
+            %th{:scope => 'row'} Din skat minus kommune- og kirkeskat
             %td.amount= format_amount(@state_tax)
     - else
       %div.no_result
