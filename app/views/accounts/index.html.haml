@@ -16,22 +16,18 @@
         %thead
           %tr
             %th{:scope => 'col'} Konto
-            %th.percentage{:scope => 'col'} %
             %th.amount{:scope => 'col'} Din andel
         %tbody
           - @accounts.each do |account|
             %tr{:id => dom_id(account), :class => ['parent']}
               %th{:scope => 'row'}= account.name
-              %td.percentage= number_to_percentage(account.percentage_of_total)
               %td.amount= format_amount(account.amount_of_tax_payment(@state_tax))
             - account.children.expenses.each do |child|
               %tr{:class => ['child', dom_id(account)]}
                 %th{:scope => 'row'}= child.name
-                %td.percentage= number_to_percentage(child.percentage_of_total)
                 %td.amount= format_amount(child.amount_of_tax_payment(@state_tax))
         %tfoot
           %tr
-            %td
             %td
             %td.amount= format_amount(@state_tax)
     - else
