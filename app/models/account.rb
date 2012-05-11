@@ -111,8 +111,8 @@ class Account < ActiveRecord::Base
   end
 
   # Returns the amount of DKK used in this account based on the given total tax payment
-  def amount_of_tax_payment(total_tax_payment)
-    total_tax_payment * self.amount / Account.total(self.year)
+  def amount_of_tax_payment(tax_payment)
+    tax_payment * self.amount / Account.total(self.year)
   end
 
 private
