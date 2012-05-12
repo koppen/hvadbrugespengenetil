@@ -2,7 +2,7 @@ class Account < ActiveRecord::Base
   default_scope order('accounts.amount DESC')
 
   scope :expenses, where('accounts.amount > 0') # Amount is flipped, positive numbers are expenses
-  scope :income, where('acounts.amount < 0') # Amount is flipped, negative numbers are income
+  scope :income, where('accounts.amount < 0') # Amount is flipped, negative numbers are income
 
   # Returns all the top level accounts (ie 'Paragraffer')
   scope :top_level, where({:parent_id => nil})
@@ -105,6 +105,25 @@ class Account < ActiveRecord::Base
 
   end
 
+  # Returns true if this is a child account
+  def child?
+    self.parent.present?
+  end
+
+  # Some top level accounts have income not coming from taxes. effective_amount
+  # returns amount reduced by a percentage taking that other-taxly-income into
+  # account
+  def effective_amount
+    return amount unless child?
+
+    total_income_in_parent = parent.children.income.sum(:amount)
+    total_expenses_in_parent = parent.children.expenses.sum(:amount)
+    percentage_covered_by_income = (total_income_in_parent/total_expenses_in_parent).abs
+    percentage_left_to_pay = 1 - percentage_covered_by_income
+
+    self.amount * percentage_left_to_pay
+  end
+
   # Returns the percentage (0..1) of the years total budget taken up by this account
   def percentage_of_total
     self.amount / Account.total(self.year)
@@ -112,7 +131,7 @@ class Account < ActiveRecord::Base
 
   # Returns the amount of DKK used in this account based on the given total tax payment
   def amount_of_tax_payment(tax_payment)
-    tax_payment * self.amount / Account.total(self.year)
+    tax_payment * self.effective_amount / Account.total(self.year)
   end
 
 private
