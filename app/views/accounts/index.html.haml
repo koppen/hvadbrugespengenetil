@@ -17,7 +17,8 @@
         = format_amount(@tax_payment)
         = past_or_future(@year, "fik", "får")
         staten de
-        = format_amount(@state_tax).strip + ','
+        = format_amount(@state_tax).strip
+        = footnote_link(1) + ","
         som de
         = past_or_future(@year, "fordelte", "fordeler")
         således:
@@ -26,7 +27,9 @@
         %thead
           %tr
             %th{:scope => 'col'} Konto
-            %th.amount{:scope => 'col'} Din andel
+            %th.amount{:scope => 'col'}
+              Din andel
+              = footnote_link(2)
         %tbody
           - @accounts.each do |account|
             %tr{:id => dom_id(account), :class => ['parent']}
@@ -46,3 +49,16 @@
           == Vi har ingen data for #{@year}, beklager.
           Prøv i stedet med
           = link_to('år 2010', :year => 2010, :tax_payment => params[:tax_payment]) + '.'
+  .footnotes
+    %ol
+      %li#footnote_1
+        Resten gik til kommune- og kirkeskat. Det nøjagtige beløb afhænger af 
+        din bopæl og tilhørsforhold til Folkekirken. I #{@year}
+        = past_or_future(@year, "var", "er")
+        den gennemsnitlige kommune- og kirkeskat på
+        = number_to_percentage(CommunalAndChurchTax.average(@year))
+        i følge
+        = link_to('Skatteministeriet', 'From http://www.skm.dk/tal_statistik/kommuneskatter/7910.html') + '.'
+      %li#footnote_2
+        Beløbene er omtrentlige og baserede på gennemsnitsbetragtninger.
+        
