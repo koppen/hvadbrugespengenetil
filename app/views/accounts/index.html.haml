@@ -43,22 +43,23 @@
           %tr
             %th{:scope => 'row'} Din skat minus kommune- og kirkeskat
             %td.amount= format_amount(@state_tax)
+
+      .footnotes
+        %ol
+          %li#footnote_1
+            Resten gik til kommune- og kirkeskat. Det nøjagtige beløb afhænger af
+            din bopæl og tilhørsforhold til Folkekirken. I #{@year}
+            = past_or_future(@year, "var", "er")
+            den gennemsnitlige kommune- og kirkeskat på
+            = number_to_percentage(CommunalAndChurchTax.average(@year))
+            i følge
+            = link_to('Skatteministeriet', 'From http://www.skm.dk/tal_statistik/kommuneskatter/7910.html') + '.'
+          %li#footnote_2
+            Beløbene er omtrentlige og baserede på gennemsnitsbetragtninger.
+
     - else
       %div.no_result
         %p
           == Vi har ingen data for #{@year}, beklager.
           Prøv i stedet med
           = link_to('år 2010', :year => 2010, :tax_payment => params[:tax_payment]) + '.'
-  .footnotes
-    %ol
-      %li#footnote_1
-        Resten gik til kommune- og kirkeskat. Det nøjagtige beløb afhænger af 
-        din bopæl og tilhørsforhold til Folkekirken. I #{@year}
-        = past_or_future(@year, "var", "er")
-        den gennemsnitlige kommune- og kirkeskat på
-        = number_to_percentage(CommunalAndChurchTax.average(@year))
-        i følge
-        = link_to('Skatteministeriet', 'From http://www.skm.dk/tal_statistik/kommuneskatter/7910.html') + '.'
-      %li#footnote_2
-        Beløbene er omtrentlige og baserede på gennemsnitsbetragtninger.
-        
