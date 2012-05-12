@@ -12,6 +12,16 @@
 %section.result
   - unless @tax_payment.blank?
     - unless @accounts.empty?
+      %p
+        Af din betaling på
+        = format_amount(@tax_payment)
+        = past_or_future(@year, "fik", "får")
+        staten de
+        = format_amount(@state_tax).strip + ','
+        som de
+        = past_or_future(@year, "fordelte", "fordeler")
+        således:
+
       %table
         %thead
           %tr
