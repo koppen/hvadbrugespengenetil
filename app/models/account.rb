@@ -1,3 +1,5 @@
+require 'csv'
+
 class Account < ActiveRecord::Base
   default_scope order('accounts.amount DESC')
 
@@ -26,14 +28,13 @@ class Account < ActiveRecord::Base
       year = (year || Date.today.year).to_s
 
       # Fix CSV. OES-CS returns the CSV in ISO8859-1, with "\r\n" as newlines.
-      lines = File.readlines(file).map(&:strip).join("\n")
-      lines = Iconv.conv('utf-8', 'iso-8859-1', lines)
+      lines = File.readlines(file).map(&:strip).join("\n").collect { |r| r.encode(Encoding::UTF_8)}
 
       Account.transaction do
         # Remove the existing accounts for the year
         Account.where(:year => year).destroy_all
 
-        FasterCSV.parse(lines, :col_sep => ';', :headers => :first_row) do |row|
+        CSV.parse(lines, :col_sep => ';', :headers => :first_row) do |row|
           puts "row: #{row.inspect}"
           title = row[0]
           key, name = title.split(' ', 2).collect(&:strip)
@@ -69,7 +70,7 @@ class Account < ActiveRecord::Base
 
       Account.transaction do
         row_index = 0
-        FasterCSV.foreach(file) do |row|
+        CSV.foreach(file) do |row|
           row_index += 1
           if row_index == 4 # Row 4 contains the year
             year = row.last

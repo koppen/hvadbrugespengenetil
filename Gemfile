@@ -17,8 +17,6 @@ group :production do
   gem 'hassle', :git => 'https://github.com/jasoncodes/hassle.git'
 end
 
-gem 'fastercsv'
-
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -44,6 +42,5 @@ gem 'fastercsv'
 
 group :development do
   gem 'heroku'
-  gem 'iconv'
   gem 'taps'
 end
