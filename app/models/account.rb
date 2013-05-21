@@ -19,49 +19,13 @@ class Account < ActiveRecord::Base
 
     # Returns the total budget expenses for year in millions
     def total(year)
-      top_level.expenses.where(:year => year).sum(:amount)
+      top_level.expenses.year(year).sum(:amount)
     end
     memoize :total
 
     # Imports data exported from http://www.oes-cs.dk/olapdatabase/finanslov/index.cgi
     def import_from_finanslov(file, year = nil)
-      year = (year || Date.today.year).to_s
-
-      # Fix CSV. OES-CS returns the CSV in ISO8859-1, with "\r\n" as newlines.
-      lines = File.readlines(file).map(&:strip).join("\n").collect { |r| r.encode(Encoding::UTF_8)}
-
-      Account.transaction do
-        # Remove the existing accounts for the year
-        Account.where(:year => year).destroy_all
-
-        CSV.parse(lines, :col_sep => ';', :headers => :first_row) do |row|
-          puts "row: #{row.inspect}"
-          title = row[0]
-          key, name = title.split(' ', 2).collect(&:strip)
-
-          # We get amounts formatted like "4.234,1" when we want "4234.1" (or "4_234.1")
-          amount = row[year.to_s]
-          amount = amount.tr('.,', '_.')
-
-          # Top level or sub-account ('Paragraf' or 'Hovedområde')?
-          parent = if key.length == 2
-            # Top level
-            nil
-          else
-            # Sub account, find the parent
-            parent_key = key.first(2)
-            Account.find_by_year_and_key(year, parent_key)
-          end
-
-          Account.create(
-            :key => key,
-            :name => name,
-            :amount => amount,
-            :year => year,
-            :parent => parent
-          )
-        end
-      end
+      Source::OesCs.import_accounts(file, year)
     end
 
     # Imports OFF23 exported as CSV from http://www.statbank.dk/OFF23
@@ -104,6 +68,10 @@ class Account < ActiveRecord::Base
       end
     end
 
+    # Returns all accounts for the given year
+    def year(year)
+      where(:year => year)
+    end
   end
 
   # Returns true if this is a child account
