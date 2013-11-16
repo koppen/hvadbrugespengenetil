@@ -11,10 +11,13 @@ class CommunalAndChurchTax
   end
 
   def self.average(year)
+    # Numbers from http://www.skm.dk/skatteomraadet/talogstatistik/kommuneskatter/7910.html
     {
       2010 => 0.25641,
       2011 => 0.25656,
-      2012 => 0.25654
+      2012 => 0.25654,
+      2013 => 0.25630,
+      2014 => 0.25617
     }[year]
   end
 
