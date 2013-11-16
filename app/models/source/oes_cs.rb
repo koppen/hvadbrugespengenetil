@@ -16,31 +16,7 @@ module Source
         Account.where(:year => year).destroy_all
 
         CSV.parse(lines, :encoding => "iso8859-1", :col_sep => ';', :headers => :first_row) do |row|
-          output "row: #{row.inspect}"
-          title = row[0].strip
-          key, name = title.split(' ', 2).collect(&:strip)
-
-          # We get amounts formatted like "4.234,1" when we want "4234.1" (or "4_234.1")
-          amount = row[year.to_s].strip
-          amount = amount.tr('.,', '_.')
-
-          # Top level or sub-account ('Paragraf' or 'Hovedområde')?
-          parent = if key.length == 2
-            # Top level
-            nil
-          else
-            # Sub account, find the parent
-            parent_key = key.first(2)
-            Account.find_by_year_and_key(year, parent_key)
-          end
-
-          Account.create(
-            :key => key,
-            :name => name,
-            :amount => amount,
-            :year => year,
-            :parent => parent
-          )
+          import_row(row, year)
         end
       end
     end
@@ -53,8 +29,45 @@ module Source
       File.readlines(path, "\r\n", encoding: "iso8859-1").collect(&:strip).join("\n")
     end
 
+    def import_row(row, year)
+      output "row: #{row.inspect}"
+      title = row[0].strip
+      key, name = title.split(' ', 2).collect(&:strip)
+
+      amount = parse_amount(row[year.to_s])
+      parent = parent_account(key, year)
+
+      Account.create(
+        :key => key,
+        :name => name,
+        :amount => amount,
+        :year => year,
+        :parent => parent
+      )
+    end
+
     def output(message)
       puts message
+    end
+
+    def parent_account(key, year)
+      if top_level_account?(key)
+        nil
+      else
+        # Sub account, find the parent
+        parent_key = key.first(2)
+        Account.find_by_year_and_key(year, parent_key)
+      end
+    end
+
+    # We get amounts formatted like "4.234,1" when we want "4234.1" (or "4_234.1")
+    def parse_amount(amount)
+      amount.strip.tr('.,', '_.')
+    end
+
+    # Top level or sub-account ('Paragraf' or 'Hovedområde')?
+    def top_level_account?(account_key)
+      account_key.length == 2
     end
   end
 end
