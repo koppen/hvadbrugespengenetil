@@ -12,16 +12,17 @@
 %section.result
   - unless @tax_payment.blank?
     - unless @accounts.empty?
-      %p
-        Af din betaling på
-        = format_amount(@tax_payment)
-        = past_or_future(@year, "fik", "får")
-        staten de
-        = format_amount(@state_tax).strip
-        = footnote_link(1) + ","
-        som de
-        = past_or_future(@year, "fordelte", "fordeler")
-        således:
+      - if @communal_tax_deducted
+        %p
+          Af din betaling på
+          = format_amount(@tax_payment)
+          = past_or_future(@year, "fik", "får")
+          staten de
+          = format_amount(@state_tax).strip
+          = footnote_link(2) + ","
+          som de
+          = past_or_future(@year, "fordelte", "fordeler")
+          således:
 
       %table
         %thead
@@ -29,7 +30,7 @@
             %th{:scope => 'col'} Konto
             %th.amount{:scope => 'col'}
               Din andel
-              = footnote_link(2)
+              = footnote_link(1)
         %tbody
           - @accounts.each do |account|
             %tr{:id => dom_id(account), :class => ['parent']}
@@ -41,21 +42,25 @@
                 %td.amount= format_amount(child.amount_of_tax_payment(@state_tax))
         %tfoot
           %tr
-            %th{:scope => 'row'} Din skat minus kommune- og kirkeskat
+            %th{:scope => 'row'}
+              Din skat
+              - if @communal_tax_deducted
+                minus kommune- og kirkeskat
             %td.amount= format_amount(@state_tax)
 
       .footnotes
         %ol
           %li#footnote_1
-            Resten gik til kommune- og kirkeskat. Det nøjagtige beløb afhænger af
-            din bopæl og tilhørsforhold til Folkekirken. I #{@year}
-            = past_or_future(@year, "var", "er")
-            den gennemsnitlige kommune- og kirkeskat på
-            = number_to_percentage(CommunalAndChurchTax.average(@year))
-            i følge
-            = link_to('Skatteministeriet', 'http://www.skm.dk/tal_statistik/kommuneskatter/7910.html') + '.'
-          %li#footnote_2
             Beløbene er omtrentlige og baserede på gennemsnitsbetragtninger.
+          - if @communal_tax_deducted
+            %li#footnote_2
+              Resten gik til kommune- og kirkeskat. Det nøjagtige beløb afhænger af
+              din bopæl og tilhørsforhold til Folkekirken. I #{@year}
+              = past_or_future(@year, "var", "er")
+              den gennemsnitlige kommune- og kirkeskat på
+              = number_to_percentage(CommunalAndChurchTax.average(@year))
+              i følge
+              = link_to('Skatteministeriet', 'http://www.skm.dk/tal_statistik/kommuneskatter/7910.html') + '.'
 
     - else
       %div.no_result
