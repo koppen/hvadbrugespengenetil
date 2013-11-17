@@ -9,6 +9,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 module Hvadbrugespengenetil
   class Application < Rails::Application
     config.assets.enabled = true
+    config.assets.precompile += ['ie.css', 'ie6.css', 'print.css']
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
