@@ -4,6 +4,12 @@ module Source
   # http://www.statbank.dk/OFF23
   #
   class Statbank
+    # Returns true if the numbers imported from this source includes income from
+    # communal taxes
+    def self.includes_communal_tax?
+      true
+    end
+
     # Imports data exported from http://www.statbank.dk/OFF23
     #
     # Expects the export to be in CSV format, contain a single year, include all

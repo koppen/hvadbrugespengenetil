@@ -6,7 +6,7 @@ class CommunalAndChurchTax
   # When we show results from years based on data from OES CS, we need to deduct
   # communal and regional taxes from the full tax payment.
   def self.deduct_communal_tax?(year)
-    Year.new(year).source == Source::OesCs
+    !Year.new(year).source.includes_communal_tax?
   end
 
   def self.average(year)

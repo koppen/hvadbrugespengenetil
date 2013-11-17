@@ -5,6 +5,12 @@ module Source
   #
   # The numbers under income doesn't include communal and regional taxes.
   class OesCs
+    # Returns true if the numbers imported from this source includes income from
+    # communal taxes
+    def self.includes_communal_tax?
+      false
+    end
+
     # Imports data exported from http://www.oes-cs.dk/olapdatabase/finanslov/index.cgi
     def import(path, year = nil)
       year = (year || Date.today.year).to_s
