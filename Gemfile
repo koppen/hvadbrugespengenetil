@@ -10,11 +10,10 @@ gem 'silent-postgres'
 
 gem 'haml'
 
-group :assets do
-  gem 'compass-rails'
-  gem 'fancy-buttons'
-  gem 'sass-rails'
-end
+gem 'compass-rails'
+gem 'fancy-buttons'
+gem 'sass-rails'
+
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
