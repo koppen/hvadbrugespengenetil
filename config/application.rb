@@ -10,7 +10,7 @@ module Hvadbrugespengenetil
   class Application < Rails::Application
     config.assets.enabled = true
     config.assets.initialize_on_precompile = false
-    config.assets.precompile += ['ie.css', 'ie6.css', 'print.css']
+    config.assets.precompile += ['ie.css', 'ie6.css', 'print.css', 'screen.css']
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
