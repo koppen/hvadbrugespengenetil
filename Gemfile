@@ -16,6 +16,7 @@ group :assets do
   gem 'compass-rails'
   gem 'fancy-buttons'
   gem 'sass-rails'
+  gem 'uglifier'
 end
 
 group :production do
