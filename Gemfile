@@ -10,13 +10,15 @@ gem 'pg'
 gem 'silent-postgres'
 
 gem 'haml'
-gem 'sass'
-gem 'compass'
-gem 'fancy-buttons'
 gem 'unicorn'
 
+group :assets do
+  gem 'compass-rails'
+  gem 'fancy-buttons'
+  gem 'sass-rails'
+end
+
 group :production do
-  gem 'hassle', :git => 'https://github.com/jasoncodes/hassle.git'
   gem "rails_12factor"
 end
 
