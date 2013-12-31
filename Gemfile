@@ -13,13 +13,11 @@ gem 'haml'
 gem 'sass'
 gem 'compass'
 gem 'fancy-buttons'
+gem 'unicorn'
 
 group :production do
   gem 'hassle', :git => 'https://github.com/jasoncodes/hassle.git'
 end
-
-# Use unicorn as the web server
-# gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
