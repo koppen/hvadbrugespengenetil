@@ -17,6 +17,7 @@ gem 'unicorn'
 
 group :production do
   gem 'hassle', :git => 'https://github.com/jasoncodes/hassle.git'
+  gem "rails_12factor"
 end
 
 # Deploy with Capistrano
