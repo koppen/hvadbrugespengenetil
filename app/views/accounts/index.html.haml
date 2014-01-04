@@ -67,4 +67,4 @@
         %p
           == Vi har ingen data for #{@year}, beklager.
           Prøv i stedet med
-          = link_to('år 2010', :year => 2010, :tax_payment => params[:tax_payment]) + '.'
+          = link_to("år #{Year.most_recent.year}", :year => Year.most_recent.year, :tax_payment => params[:tax_payment]) + '.'
