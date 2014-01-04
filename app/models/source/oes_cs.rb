@@ -1,5 +1,5 @@
 module Source
-  # Finansministeriet/Moderniseringsstyrelsen published numbers from the
+  # Finansministeriet/Moderniseringsstyrelsen publishes numbers from the
   # governmental budget and it's predictions for the next 3 years at
   # http://www.oes-cs.dk/olapdatabase/finanslov/index.cgi
   #
@@ -12,6 +12,8 @@ module Source
     end
 
     # Imports data exported from http://www.oes-cs.dk/olapdatabase/finanslov/index.cgi
+    #
+    # The CSV should contain "Paragraf, Hovedområde" and show all account levels
     def import(path, year = nil)
       year = (year || Date.today.year).to_s
 
