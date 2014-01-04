@@ -14,7 +14,8 @@ module AccountsHelper
       :min => 0,
       :placeholder => "en masse",
       :required => true,
-        :type => :number
+      :step => 1000,
+      :type => :number
     }
 
     text_field_tag name, value, options
