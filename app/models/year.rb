@@ -6,7 +6,8 @@ class Year
     2010 => Source::Statbank,
     2011 => Source::Statbank,
     2012 => Source::Statbank,
-    2013 => Source::OesCs
+    2013 => Source::OesCs,
+    2014 => Source::OesCs
   }
 
   # Returns the most recent year with data
