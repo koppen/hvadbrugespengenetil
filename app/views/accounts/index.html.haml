@@ -68,3 +68,5 @@
           == Vi har ingen data for #{@year}, beklager.
           Prøv i stedet med
           = link_to("år #{Year.most_recent.year}", :year => Year.most_recent.year, :tax_payment => params[:tax_payment]) + '.'
+
+= render "layouts/ad"
