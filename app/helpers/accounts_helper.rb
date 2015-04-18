@@ -11,6 +11,7 @@ module AccountsHelper
   def amount_input_tag(name, value)
     options = {
       :autofocus => true,
+      :class => "amount",
       :min => 0,
       :placeholder => "en masse",
       :required => true,

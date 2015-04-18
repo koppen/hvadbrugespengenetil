@@ -38,6 +38,8 @@ article
   margin: 2em auto
   max-width: 650px
   width: 95%
+  +small-display
+    margin: 2.5% auto
 
   header
     background: $finansministeriet_blue
@@ -53,6 +55,10 @@ article
           color: #ffffff
 section
   margin: 2em 0
+
+section.input
+  +small-display
+    margin-top: 0
 
 footer
   color: lighten($text_color, 25%)
@@ -75,22 +81,31 @@ form
   background: saturate(lighten($finansministeriet_blue, 66%), 66%)
   padding: 1em
   text-align: center
+  +small-display
+    padding:
+      bottom: 2em
+      top: 2em
+  +large-display
+    +ribbon(40px, $finansministeriet_blue)
   label
     display: block
     font-size: 1.6em
     cursor: pointer
-  input
-    font-family: inherit
-    font-size: 1em
-    text-align: center
-    width: 6em
   button
     +fancy-button($finansministeriet_blue)
     clear: both
     font-size: 1.6em
     font-weight: normal
     margin-top: 0.5em
-  +ribbon(40px, $finansministeriet_blue)
+  .amount
+    font-family: inherit
+    font-size: 1em
+    text-align: center
+    width: 6em
+    +small-display
+      display: block
+      margin: 0.5em 0
+      width: 100%
 
 .no_result
   margin: 0 2em

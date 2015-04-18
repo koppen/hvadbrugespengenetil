@@ -1,0 +1,9 @@
+$mobile-breakpoint: 730px
+
+@mixin small-display
+  @media screen and (max-width: $mobile-breakpoint)
+    @content
+
+@mixin large-display
+  @media screen and (min-width: $mobile-breakpoint)
+    @content
