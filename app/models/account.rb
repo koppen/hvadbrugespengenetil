@@ -15,13 +15,11 @@ class Account < ActiveRecord::Base
   before_save :remove_abbreviations_from_name
 
   class << self
-    extend ActiveSupport::Memoizable
-
     # Returns the total budget expenses for year in millions
     def total(year)
-      top_level.expenses.year(year).sum(:amount)
+      @totals ||= {}
+      @totals[year] ||= top_level.expenses.year(year).sum(:amount)
     end
-    memoize :total
 
     # Returns all accounts for the given year
     def year(year)
