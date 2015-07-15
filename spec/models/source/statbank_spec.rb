@@ -12,7 +12,7 @@ describe Source::Statbank do
 
       Source::Statbank.new.import("spec/fixtures/statbank/2012.csv")
 
-      Account.find_by_id(existing_account.id).should be_nil
+      expect(Account.find_by_id(existing_account.id)).to be_nil
     end
 
     it "preserves existing accounts for other years" do
@@ -20,19 +20,21 @@ describe Source::Statbank do
 
       Source::Statbank.new.import("spec/fixtures/statbank/2012.csv")
 
-      Account.find_by_id(existing_account_from_another_year.id).should_not be_nil
+      expect(
+        Account.find_by_id(existing_account_from_another_year.id)
+      ).to_not be_nil
     end
 
     it "imports top level accounts" do
       Source::Statbank.new.import("spec/fixtures/statbank/2012.csv")
 
-      Account.top_level.year(2012).count.should == 2
+      expect(Account.top_level.year(2012).count).to eq(2)
     end
 
     it "imports 2nd level accounts" do
       Source::Statbank.new.import("spec/fixtures/statbank/2012.csv")
 
-      Account.year(2012).where("parent_id IS NOT NULL").count.should == 4
+      expect(Account.year(2012).where("parent_id IS NOT NULL").count).to eq(4)
     end
   end
 end

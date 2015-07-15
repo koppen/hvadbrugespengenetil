@@ -4,15 +4,15 @@ describe "Year" do
   describe ".source" do
     it "returns nil for unknown years" do
       year = Year.new(2000)
-      year.source.should be_nil
+      expect(year.source).to be_nil
     end
 
     it "returns source for year" do
       year = Year.new(2012)
-      year.source.should == Source::Statbank
+      expect(year.source).to eq(Source::Statbank)
 
       year = Year.new(2013)
-      year.source.should == Source::OesCs
+      expect(year.source).to eq(Source::OesCs)
     end
   end
 end

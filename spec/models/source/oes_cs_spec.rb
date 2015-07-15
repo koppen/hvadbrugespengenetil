@@ -12,7 +12,7 @@ describe Source::OesCs do
 
       Source::OesCs.new.import("spec/fixtures/oes_cs/2012.csv", 2012)
 
-      Account.find_by_id(existing_account.id).should be_nil
+      expect(Account.find_by_id(existing_account.id)).to be_nil
     end
 
     it "preserves existing accounts for other years" do
@@ -20,19 +20,19 @@ describe Source::OesCs do
 
       Source::OesCs.new.import("spec/fixtures/oes_cs/2012.csv", 2012)
 
-      Account.find_by_id(existing_account_from_another_year.id).should_not be_nil
+      expect(Account.find_by_id(existing_account_from_another_year.id)).to_not be_nil
     end
 
     it "imports top level accounts" do
       Source::OesCs.new.import(Rails.root.join("spec/fixtures/oes_cs/2012.csv"), 2012)
 
-      Account.top_level.year(2012).count.should == 2
+      expect(Account.top_level.year(2012).count).to eq(2)
     end
 
     it "imports 2nd level accounts" do
       Source::OesCs.new.import(Rails.root.join("spec/fixtures/oes_cs/2012.csv"), 2012)
 
-      Account.year(2012).where("parent_id IS NOT NULL").count.should == 2
+      expect(Account.year(2012).where("parent_id IS NOT NULL").count).to eq(2)
     end
   end
 end

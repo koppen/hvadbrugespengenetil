@@ -6,7 +6,7 @@ describe "Account" do
       [2011, 2012, 2013, 2012].each do |year|
         Account.create!(:year => year)
       end
-      Account.year(2012).collect(&:year).uniq.should == [2012]
+      expect(Account.year(2012).collect(&:year).uniq).to eq([2012])
     end
   end
 end
