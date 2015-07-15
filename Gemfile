@@ -1,5 +1,6 @@
 source "http://rubygems.org"
-ruby "1.9.3"
+
+ruby `cat .ruby-version`.strip
 
 gem "rails", "~> 4.2.3"
 gem "pg"
