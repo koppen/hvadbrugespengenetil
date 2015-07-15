@@ -5,13 +5,13 @@ gem "rails", "~> 4.2.3"
 gem "pg"
 gem "silent-postgres"
 
+gem "compass-rails"
+gem "fancy-buttons"
 gem "haml"
+gem "sass-rails"
 gem "unicorn"
 
 group :assets do
-  gem "compass-rails"
-  gem "fancy-buttons"
-  gem "sass-rails"
   gem "uglifier"
 end
 
