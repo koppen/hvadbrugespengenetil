@@ -1,7 +1,7 @@
 require "csv"
 
 class Account < ActiveRecord::Base
-  default_scope order("accounts.amount DESC")
+  default_scope -> { order("accounts.amount DESC") }
 
   scope :expenses, where("accounts.amount > 0") # Amount is flipped, positive numbers are expenses
   scope :income, where("accounts.amount < 0") # Amount is flipped, negative numbers are income
