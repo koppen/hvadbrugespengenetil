@@ -1,7 +1,6 @@
-require_relative '../../spec_helper'
+require_relative "../../spec_helper"
 
 describe Source::Statbank do
-
   describe "importing from CSV" do
     before :each do
       # We don't want output in specs
@@ -36,5 +35,4 @@ describe Source::Statbank do
       Account.year(2012).where("parent_id IS NOT NULL").count.should == 4
     end
   end
-
 end

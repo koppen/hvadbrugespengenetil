@@ -23,7 +23,7 @@ module Source
         # Remove the existing accounts for the year
         Account.where(:year => year).destroy_all
 
-        CSV.parse(lines, :encoding => "iso8859-1", :col_sep => ';', :headers => :first_row) do |row|
+        CSV.parse(lines, :encoding => "iso8859-1", :col_sep => ";", :headers => :first_row) do |row|
           import_row(row, year)
         end
       end
@@ -34,13 +34,13 @@ module Source
     # Picks the CSV apart, removes trailing spaces (that are invalid), and
     # reassemble for the CSV parser.
     def clean_up_csv(path)
-      File.readlines(path, "\r\n", encoding: "iso8859-1").collect(&:strip).join("\n")
+      File.readlines(path, "\r\n", :encoding => "iso8859-1").collect(&:strip).join("\n")
     end
 
     def import_row(row, year)
       output "row: #{row.inspect}"
       title = row[0].strip
-      key, name = title.split(' ', 2).collect(&:strip)
+      key, name = title.split(" ", 2).collect(&:strip)
 
       amount = parse_amount(row[year.to_s])
       parent = parent_account(key, year)
@@ -70,7 +70,7 @@ module Source
 
     # We get amounts formatted like "4.234,1" when we want "4234.1" (or "4_234.1")
     def parse_amount(amount)
-      amount.strip.tr('.,', '_.')
+      amount.strip.tr(".,", "_.")
     end
 
     # Top level or sub-account ('Paragraf' or 'Hovedområde')?

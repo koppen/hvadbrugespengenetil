@@ -1,18 +1,18 @@
-source 'http://rubygems.org'
-ruby '1.9.3'
+source "http://rubygems.org"
+ruby "1.9.3"
 
-gem 'rails', '~> 3.2.0'
-gem 'pg'
-gem 'silent-postgres'
+gem "rails", "~> 3.2.0"
+gem "pg"
+gem "silent-postgres"
 
-gem 'haml'
-gem 'unicorn'
+gem "haml"
+gem "unicorn"
 
 group :assets do
-  gem 'compass-rails'
-  gem 'fancy-buttons'
-  gem 'sass-rails'
-  gem 'uglifier'
+  gem "compass-rails"
+  gem "fancy-buttons"
+  gem "sass-rails"
+  gem "uglifier"
 end
 
 group :production do
@@ -20,10 +20,10 @@ group :production do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem "rspec-rails"
 end
 
 group :development do
-  gem 'heroku'
-  gem 'taps'
+  gem "heroku"
+  gem "taps"
 end

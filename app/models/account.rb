@@ -1,16 +1,16 @@
-require 'csv'
+require "csv"
 
 class Account < ActiveRecord::Base
-  default_scope order('accounts.amount DESC')
+  default_scope order("accounts.amount DESC")
 
-  scope :expenses, where('accounts.amount > 0') # Amount is flipped, positive numbers are expenses
-  scope :income, where('accounts.amount < 0') # Amount is flipped, negative numbers are income
+  scope :expenses, where("accounts.amount > 0") # Amount is flipped, positive numbers are expenses
+  scope :income, where("accounts.amount < 0") # Amount is flipped, negative numbers are income
 
   # Returns all the top level accounts (ie 'Paragraffer')
   scope :top_level, where({:parent_id => nil})
 
   belongs_to :parent, :class_name => name
-  has_many :children, :class_name => name, :inverse_of => :parent, :foreign_key => 'parent_id'
+  has_many :children, :class_name => name, :inverse_of => :parent, :foreign_key => "parent_id"
 
   before_save :remove_abbreviations_from_name
 
@@ -29,7 +29,7 @@ class Account < ActiveRecord::Base
 
   # Returns true if this is a child account
   def child?
-    self.parent.present?
+    parent.present?
   end
 
   # Some top level accounts have income not coming from taxes. effective_amount
@@ -40,27 +40,26 @@ class Account < ActiveRecord::Base
 
     total_income_in_parent = parent.children.income.sum(:amount)
     total_expenses_in_parent = parent.children.expenses.sum(:amount)
-    percentage_covered_by_income = (total_income_in_parent/total_expenses_in_parent).abs
+    percentage_covered_by_income = (total_income_in_parent / total_expenses_in_parent).abs
     percentage_left_to_pay = 1 - percentage_covered_by_income
 
-    self.amount * percentage_left_to_pay
+    amount * percentage_left_to_pay
   end
 
   # Returns the percentage (0..1) of the years total budget taken up by this account
   def percentage_of_total
-    self.amount / Account.total(self.year)
+    amount / Account.total(year)
   end
 
   # Returns the amount of DKK used in this account based on the given total tax payment
   def amount_of_tax_payment(tax_payment)
-    tax_payment * self.effective_amount / Account.total(self.year)
+    tax_payment * effective_amount / Account.total(year)
   end
 
-private
+  private
 
   def remove_abbreviations_from_name
-    self.name = (self.name || '').gsub('F & U', 'Forskning og Udvikling')
+    self.name = (name || "").gsub("F & U", "Forskning og Udvikling")
     true # Don't break save chain
   end
-
 end

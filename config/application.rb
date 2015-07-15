@@ -1,6 +1,6 @@
-require File.expand_path('../boot', __FILE__)
+require File.expand_path("../boot", __FILE__)
 
-require 'rails/all'
+require "rails/all"
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -10,7 +10,7 @@ module Hvadbrugespengenetil
   class Application < Rails::Application
     config.assets.enabled = true
     config.assets.initialize_on_precompile = false
-    config.assets.precompile += ['ie.css', 'ie6.css', 'print.css', 'screen.css']
+    config.assets.precompile += ["ie.css", "ie6.css", "print.css", "screen.css"]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -52,6 +52,6 @@ module Hvadbrugespengenetil
     config.assets.precompile += %w(ie6.css)
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.assets.version = "1.0"
   end
 end

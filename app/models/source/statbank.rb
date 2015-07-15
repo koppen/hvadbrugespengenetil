@@ -41,7 +41,7 @@ module Source
       parent = parent_account(key_parts, year)
 
       Account.create(
-        :key => key_parts.join('.'),
+        :key => key_parts.join("."),
         :name => name,
         :amount => amount,
         :year => year,
@@ -65,9 +65,9 @@ module Source
     end
 
     def parse_title_into_key_parts_and_name(title)
-      key, name = title.split(' ', 2).collect(&:strip)
-      key_parts = key.to_s.split('.')
-      return key_parts, name
+      key, name = title.split(" ", 2).collect(&:strip)
+      key_parts = key.to_s.split(".")
+      [key_parts, name]
     end
 
     def remove_existing_accounts(year)

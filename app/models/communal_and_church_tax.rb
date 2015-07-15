@@ -1,5 +1,4 @@
 class CommunalAndChurchTax
-
   # When we import data from OES CS the numbers only includes what the state
   # spends money on, not what regions and communes spend their money on.
   #
@@ -27,5 +26,4 @@ class CommunalAndChurchTax
       tax_payment
     end
   end
-
 end

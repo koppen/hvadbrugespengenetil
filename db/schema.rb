@@ -10,18 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110628190705) do
-
+ActiveRecord::Schema.define(:version => 20_110_628_190_705) do
   create_table "accounts", :force => true do |t|
-    t.string   "name"
-    t.string   "key"
-    t.decimal  "amount"
-    t.integer  "year"
-    t.integer  "parent_id"
+    t.string "name"
+    t.string "key"
+    t.decimal "amount"
+    t.integer "year"
+    t.integer "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "accounts", ["amount", "year"], :name => "index_accounts_on_amount_and_year"
-
 end
