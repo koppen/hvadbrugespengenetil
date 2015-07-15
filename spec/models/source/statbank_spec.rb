@@ -4,7 +4,7 @@ describe Source::Statbank do
   describe "importing from CSV" do
     before :each do
       # We don't want output in specs
-      Source::Statbank.any_instance.stub(:output)
+      allow_any_instance_of(Source::Statbank).to receive(:output)
     end
 
     it "deletes existing accounts for the year" do

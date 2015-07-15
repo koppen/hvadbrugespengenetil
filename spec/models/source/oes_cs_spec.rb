@@ -4,7 +4,7 @@ describe Source::OesCs do
   describe "importing from CSV" do
     before :each do
       # We don't want output in specs
-      Source::OesCs.any_instance.stub(:output)
+      allow_any_instance_of(Source::OesCs).to receive(:output)
     end
 
     it "deletes existing accounts for the year" do
