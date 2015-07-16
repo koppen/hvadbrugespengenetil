@@ -25,6 +25,5 @@ group :development, :test do
 end
 
 group :development do
-  gem "heroku"
   gem "taps"
 end
