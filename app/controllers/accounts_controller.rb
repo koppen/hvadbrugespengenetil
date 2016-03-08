@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   def index
-    @year = (params[:year] || [Time.now.year - 1, 2010].max).to_i
+    @year = (params[:year] || Account.pluck(:year).max).to_i
 
     @tax_payment = params[:tax_payment]
     @tax_payment = (@tax_payment.to_i rescue nil)
