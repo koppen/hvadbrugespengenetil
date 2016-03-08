@@ -16,7 +16,7 @@ class CommunalAndChurchTax
       2012 => 0.25654,
       2013 => 0.25630,
       2014 => 0.25617
-    }[year]
+    }.fetch(year)
   end
 
   def self.tax_payment_with_communal_tax_deducted(tax_payment, year)
