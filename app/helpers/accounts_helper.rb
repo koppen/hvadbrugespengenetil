@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AccountsHelper
   def number_to_percentage(number)
     "#{(number * 100.0).round(1)}%"

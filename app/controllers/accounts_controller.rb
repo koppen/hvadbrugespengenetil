@@ -1,9 +1,15 @@
+# frozen_string_literal: true
+
 class AccountsController < ApplicationController
   def index
     @year = (params[:year] || Account.pluck(:year).max).to_i
 
     @tax_payment = params[:tax_payment]
-    @tax_payment = (@tax_payment.to_i rescue nil)
+    @tax_payment = (begin
+                      @tax_payment.to_i
+                    rescue
+                      nil
+                    end)
     @tax_payment = nil if @tax_payment.zero?
 
     unless @tax_payment.blank?

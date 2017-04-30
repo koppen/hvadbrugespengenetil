@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Source
   # Danmarks Statistik publishes "OFF23: Classifications of functions of
   # government expenditures by function (Yearly)" at

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 source "http://rubygems.org"
 
 ruby `cat .ruby-version`.strip
 
-gem "rails", "~> 4.2.3"
 gem "pg"
+gem "rails", "~> 4.2.3"
 gem "silent-postgres"
 
 gem "compass-rails"

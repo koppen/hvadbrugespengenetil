@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "csv"
 
 class Account < ActiveRecord::Base
@@ -7,7 +9,7 @@ class Account < ActiveRecord::Base
   scope :income, -> { where("accounts.amount < 0") } # Amount is flipped, negative numbers are income
 
   # Returns all the top level accounts (ie 'Paragraffer')
-  scope :top_level, -> { where({:parent_id => nil}) }
+  scope :top_level, -> { where(:parent_id => nil) }
 
   belongs_to :parent, :class_name => name
   has_many :children, :class_name => name, :inverse_of => :parent, :foreign_key => "parent_id"

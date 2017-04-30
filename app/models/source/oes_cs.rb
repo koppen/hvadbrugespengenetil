@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Source
   # Finansministeriet/Moderniseringsstyrelsen publishes numbers from the
   # governmental budget and it's predictions for the next 3 years at

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Contain information about how data for each year was imported
 class Year
   attr_reader :year
@@ -10,7 +12,7 @@ class Year
     2014 => Source::OesCs,
     2015 => Source::OesCs,
     2016 => Source::OesCs
-  }
+  }.freeze
 
   # Returns the most recent year with data
   def self.most_recent
