@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Replaces the local development database with the actual database from
+# production.
+
+LOCAL_DATABASE=hvadbrugespengenetil_development
+
+heroku pg:reset DATABASE_URL
+heroku pg:push $LOCAL_DATABASE DATABASE_URL
