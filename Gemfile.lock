@@ -60,26 +60,26 @@ GEM
     execjs (2.5.2)
     fancy-buttons (1.2.0)
       compass (>= 0.11)
-    ffi (1.9.10)
+    ffi (1.14.2)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     haml (4.0.6)
       tilt
     hike (1.2.3)
     i18n (0.7.0)
-    json (1.8.3)
+    json (1.8.6)
     kgio (2.9.3)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (1.25.1)
-    mini_portile (0.6.2)
+    mini_portile2 (2.1.0)
     minitest (5.7.0)
     multi_json (1.11.2)
-    nokogiri (1.6.6.2)
-      mini_portile (~> 0.6.0)
-    pg (0.18.2)
+    nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
+    pg (1.2.3)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -192,7 +192,7 @@ DEPENDENCIES
   unicorn
 
 RUBY VERSION
-   ruby 2.3.3p222
+   ruby 2.4.10p364
 
 BUNDLED WITH
-   1.14.6
+   1.17.3
