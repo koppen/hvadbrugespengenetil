@@ -4,7 +4,7 @@ source "http://rubygems.org"
 
 ruby `cat .ruby-version`.strip
 
-gem "pg"
+gem "pg", "< 1.0"
 gem "rails", "~> 4.2.3"
 gem "silent-postgres"
 
