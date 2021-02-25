@@ -17,13 +17,15 @@ ActiveRecord::Schema.define(version: 20110628190705) do
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "name"
-    t.string   "key"
+    t.string   "name",       limit: 255
+    t.string   "key",        limit: 255
     t.decimal  "amount"
     t.integer  "year"
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "accounts", ["amount", "year"], name: "index_accounts_on_amount_and_year", using: :btree
 
 end
