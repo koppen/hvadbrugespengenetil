@@ -13,8 +13,8 @@ class CommunalAndChurchTax
     2013 => 0.25630,
     2014 => 0.25617,
     2015 => 0.25613,
-    2016 => 0.24910,
-    2017 => 0.24913,
+    2016 => 0.25612,
+    2017 => 0.25606
   }
 
   # When we import data from OES CS the numbers only includes what the state
