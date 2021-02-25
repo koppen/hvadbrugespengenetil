@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 class CommunalAndChurchTax
+  # Numbers from http://www.skm.dk/skatteomraadet/talogstatistik/kommuneskatter/7910.html
+  AVERAGES = {
+    2010 => 0.25641,
+    2011 => 0.25656,
+    2012 => 0.25654,
+    2013 => 0.25630,
+    2014 => 0.25617,
+    2015 => 0.25613,
+    2016 => 0.24910,
+    2017 => 0.24913,
+  }
+
   # When we import data from OES CS the numbers only includes what the state
   # spends money on, not what regions and communes spend their money on.
   #
@@ -11,17 +23,7 @@ class CommunalAndChurchTax
   end
 
   def self.average(year)
-    # Numbers from http://www.skm.dk/skatteomraadet/talogstatistik/kommuneskatter/7910.html
-    {
-      2010 => 0.25641,
-      2011 => 0.25656,
-      2012 => 0.25654,
-      2013 => 0.25630,
-      2014 => 0.25617,
-      2015 => 0.25613,
-      2016 => 0.24910,
-      2017 => 0.24913
-    }.fetch(year)
+    AVERAGES.fetch(year)
   end
 
   def self.tax_payment_with_communal_tax_deducted(tax_payment, year)
