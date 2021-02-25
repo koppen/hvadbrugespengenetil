@@ -18,7 +18,7 @@ class CommunalAndChurchTax
     2018 => 0.25597,
     2019 => 0.25604,
     2020 => 0.25629,
-    2021 => 0.25641
+    2021 => 0.25641,
   }
 
   # When we import data from OES CS the numbers only includes what the state

@@ -12,7 +12,7 @@ class Year
     2014 => Source::OesCs,
     2015 => Source::OesCs,
     2016 => Source::OesCs,
-    2020 => Source::OesCs
+    2020 => Source::OesCs,
   }.freeze
 
   # Returns the most recent year with data

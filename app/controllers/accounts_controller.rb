@@ -6,10 +6,10 @@ class AccountsController < ApplicationController
 
     @tax_payment = params[:tax_payment]
     @tax_payment = (begin
-                      @tax_payment.to_i
-                    rescue
-                      nil
-                    end)
+      @tax_payment.to_i
+    rescue StandardError
+      nil
+    end)
     @tax_payment = nil if @tax_payment.zero?
 
     unless @tax_payment.blank?

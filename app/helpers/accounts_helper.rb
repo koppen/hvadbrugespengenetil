@@ -6,7 +6,8 @@ module AccountsHelper
   end
 
   def format_amount(amount)
-    number_to_currency(amount.round, :unit => "kr. ", :format => "%n %u", :delimiter => ".", :separator => ",", :precision => 0)
+    number_to_currency(amount.round, :unit => "kr. ", :format => "%n %u", :delimiter => ".", :separator => ",",
+                                     :precision => 0)
   end
 
   def amount_input_tag(name, value)
@@ -17,7 +18,7 @@ module AccountsHelper
       :placeholder => "en masse",
       :required => true,
       :step => 1000,
-      :type => :number
+      :type => :number,
     }
 
     text_field_tag name, value, options
