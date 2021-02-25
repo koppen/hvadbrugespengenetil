@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class CommunalAndChurchTax
-  # Numbers from http://www.skm.dk/skatteomraadet/talogstatistik/kommuneskatter/7910.html
+  # Numbers from
+  # http://www.skm.dk/skatteomraadet/talogstatistik/kommuneskatter/7910.html
+  #
+  # We're using the "I alt gennemsnitlig kommunal skat" numbers here, as they
+  # include both communal and church taxes.
   AVERAGES = {
     2010 => 0.25641,
     2011 => 0.25656,
