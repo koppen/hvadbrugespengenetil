@@ -2,11 +2,54 @@ AllCops:
   DisplayCopNames: true
   Exclude:
     - 'bin/*'
+    - 'config/initializers/backtrace_silencers.rb'
+    - 'config/initializers/content_security_policy.rb'
+    - 'config/initializers/simple_form_bootstrap.rb'
+    - 'config/initializers/wrap_parameters.rb'
+    - 'config/puma.rb'
     - 'db/schema.rb'
-    - 'node_modules/**/*.rb'
+    - 'lib/templates/**/*.rb'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+  NewCops: enable
+  TargetRubyVersion: 2.6
 
-Lint/EndAlignment:
+Bundler/OrderedGems:
+  ConsiderPunctuation: true
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/LineLength:
+  Exclude:
+    - 'app/dashboards/*'
+    - 'config/initializers/*'
+    - 'db/migrate/*'
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
 
 Metrics/AbcSize:
   Exclude:
@@ -16,28 +59,31 @@ Metrics/BlockLength:
   Exclude:
     - 'config/**/*.rb'
     - 'lib/**/*.rake'
+    - 'Guardfile'
     - 'Rakefile'
+    - 'spec/**/*'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'app/dashboards/*'
 
 Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*'
 
-Rails/DynamicFindBy:
+Naming/FileName:
   Enabled: false
 
-Style/AlignParameters:
-  EnforcedStyle: with_fixed_indentation
+Naming/RescuedExceptionsVariableName:
+  PreferredName: error
+
+Style/AsciiComments:
+  Enabled: false
 
 Style/BlockDelimiters:
   Enabled: false
 
 Style/Documentation:
-  Enabled: false
-
-Style/DotPosition:
-  EnforcedStyle: trailing
-
-Style/FileName:
   Enabled: false
 
 Style/HashSyntax:
@@ -46,17 +92,20 @@ Style/HashSyntax:
 Style/IfUnlessModifier:
   Enabled: false
 
-Style/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
-
-Style/MultilineOperationIndentation:
-  EnforcedStyle: indented
-
-Style/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
+Style/SafeNavigation:
+  Enabled: false
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
 
 Style/WordArray:
   EnforcedStyle: brackets
