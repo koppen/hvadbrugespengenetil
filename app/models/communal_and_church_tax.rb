@@ -2,7 +2,7 @@
 
 class CommunalAndChurchTax
   # Numbers from
-  # http://www.skm.dk/skatteomraadet/talogstatistik/kommuneskatter/7910.html
+  # https://www.skm.dk/skattetal/satser/statistik-i-kommunerne/kommuneskatter-gennemsnitsprocenter-2007-2022/
   #
   # We're using the "I alt gennemsnitlig kommunal skat" numbers here, as they
   # include both communal and church taxes.

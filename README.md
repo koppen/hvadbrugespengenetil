@@ -2,7 +2,7 @@
 
 ## Configure communal and church tax
 
-At https://www.skm.dk/skattetal/satser/statistik-i-kommunerne/kommuneskatter-gennemsnitsprocenter-2007-2021/ you'll find a table of average communal and church tax rates across Denmark for a given year.
+At https://www.skm.dk/skattetal/satser/statistik-i-kommunerne/kommuneskatter-gennemsnitsprocenter-2007-2022/ you'll find a table of average communal and church tax rates across Denmark for a given year.
 
 `CommunalAndChurchTax::AVERAGES` in `app/models/communal_and_church_tax.rb` should be kept up to date with those numbers, using the "I alt gennemsnitlig kommunal skat" row.
 
