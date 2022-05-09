@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # config/unicorn.rb
-worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
+worker_processes Integer(ENV.fetch("WEB_CONCURRENCY", 3))
 timeout 15
 preload_app true
 
@@ -18,7 +18,7 @@ end
 after_fork do |_server, _worker|
   Signal.trap "TERM" do
     puts "Unicorn worker intercepting TERM and doing nothing. " \
-      "Wait for master to send QUIT"
+         "Wait for master to send QUIT"
   end
 
   defined?(ActiveRecord::Base) &&
