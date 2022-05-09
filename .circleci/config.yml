@@ -4,7 +4,7 @@ jobs:
   tests:
     docker:
       - image: cimg/ruby:2.6.6
-      - image: cimg/postgresql:13-6
+      - image: cimg/postgres:13.6
 
     working_directory: ~/repo
 
@@ -33,7 +33,7 @@ jobs:
   build_assets:
     docker:
       - image: cimg/ruby:2.6.6
-      - image: cimg/postgresql:13-6
+      - image: cimg/postgres:13.6
 
     working_directory: ~/repo
 
