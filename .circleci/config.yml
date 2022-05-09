@@ -22,6 +22,7 @@ jobs:
       - run:
           name: Setup database
           command: |
+            gem install bundler:1.17.3
             bundle exec rake db:schema:load
 
       - run:
@@ -50,6 +51,7 @@ jobs:
       - run:
           name: Precompile assets
           command: |
+            gem install bundler:1.17.3
             bundle exec rake assets:precompile
 
   code_quality:
@@ -94,7 +96,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            gem install bundler
+            gem install bundler:1.17.3
             bundle install --jobs=4 --retry=3 --path vendor/bundle
             bundle clean --force
 
