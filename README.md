@@ -16,6 +16,8 @@ Currently we import data in our local database. So the full process is...
 
 ### From OES CS
 
+Use this to show data for years that have yet to be completed, for example the current year or the next year.
+
 1. Go to https://www.oes-cs.dk/olapdatabase/finanslov/index.cgi
 2. Under "Struktur", choose only "Paragraf", "Hovedområde", and make sure "Alle niveauer på én gang" is enabled.
 3. Choose the year under "Filter"
