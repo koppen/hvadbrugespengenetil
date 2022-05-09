@@ -6,4 +6,4 @@
 LOCAL_DATABASE=hvadbrugespengenetil_development
 
 dropdb --if-exists -i $LOCAL_DATABASE
-heroku pg:pull DATABASE_URL $LOCAL_DATABASE --remote production
+npx heroku pg:pull DATABASE_URL $LOCAL_DATABASE --remote production
