@@ -22,3 +22,15 @@ Currently we import data in our local database. So the full process is...
 4. Click "Download" and save the file locally.
 5. Run `rails runner 'Source::OesCs.new.import("<path to file>", <year>)'`
 6. Add the year to `Year::SOURCES` in `app/models/year.rb`, ie like `2020 => Source::OesCs`.
+
+### From Danmarks Statistik
+
+Use this import to get access to historical data, usually for the year prior.
+
+1. Go to https://www.statbank.dk/OFF29, ensure you've got the danish locale.
+2. Select all fields under "Funktion".
+3. Select a single year under "År".
+4. Click "Vis tabel".
+5. Save the table as commaseparated CSV (*.csv).
+6. Run `rails runner 'Source::Statbank.new.import("<path to file>")'`
+7. Add the year to `Year::SOURCES` in `app/models/year.rb`, ie like `2021 => Source::Statbank`.
