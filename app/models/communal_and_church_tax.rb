@@ -4,8 +4,8 @@ class CommunalAndChurchTax
   # Numbers from
   # https://www.skm.dk/skattetal/satser/statistik-i-kommunerne/kommuneskatter-gennemsnitsprocenter-2007-2022/
   #
-  # We're using the "I alt gennemsnitlig kommunal skat" numbers here, as they
-  # include both communal and church taxes.
+  # We're using the "Gennemsnitlige kommune- og kirkeskatteprocenter" > "I alt"
+  # numbers here, as they include both communal and church taxes.
   AVERAGES = {
     2010 => 0.25641,
     2011 => 0.25656,
