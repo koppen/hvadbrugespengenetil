@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 module Source
-  # Danmarks Statistik publishes "OFF23: Classifications of functions of
-  # government expenditures by function (Yearly)" at
-  # http://www.statbank.dk/OFF23
+  # Danmarks Statistik publishes "OFF29:  OFF29: General government, COFOG"
+  # http://www.statbank.dk/OFF29
   #
   class Statbank
     # Returns true if the numbers imported from this source includes income from
@@ -12,7 +11,7 @@ module Source
       true
     end
 
-    # Imports data exported from http://www.statbank.dk/OFF23
+    # Imports data exported from http://www.statbank.dk/OFF29
     #
     # Expects the export to be in CSV format, contain a single year, include all
     # functions, and have function codes in separate columns.
