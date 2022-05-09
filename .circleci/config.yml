@@ -1,0 +1,124 @@
+version: 2.1
+
+jobs:
+  tests:
+    docker:
+      - image: cimg/ruby:2.6.6
+      - image: cimg/postgresql:13-6
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: ~/repo
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - dependencies-{{ .Environment.CACHE_VERSION }}-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Setup database
+          command: |
+            bundle exec rake db:schema:load
+
+      - run:
+          name: Run tests
+          command: |
+            bundle exec rspec
+
+  build_assets:
+    docker:
+      - image: cimg/ruby:2.6.6
+      - image: cimg/postgresql:13-6
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: ~/repo
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - dependencies-{{ .Environment.CACHE_VERSION }}-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Precompile assets
+          command: |
+            bundle exec rake assets:precompile
+
+  code_quality:
+    docker:
+      - image: cimg/ruby:2.6.6
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: ~/repo
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - dependencies-{{ .Environment.CACHE_VERSION }}-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Lint
+          command: |
+            script/lint
+
+  setup:
+    docker:
+      - image: cimg/ruby:2.6.6
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: ~/repo
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - dependencies-{{ .Environment.CACHE_VERSION }}-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Install dependencies
+          command: |
+            gem install bundler
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bundle clean --force
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: dependencies-{{ .Environment.CACHE_VERSION }}-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .bundle
+            - config/
+
+workflows:
+  build:
+    jobs:
+      - setup
+      - build_assets:
+          requires:
+            - setup
+      # - code_quality:
+      #     requires:
+      #       - setup
+      - tests:
+          requires:
+            - setup
