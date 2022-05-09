@@ -19,6 +19,7 @@ class CommunalAndChurchTax
     2019 => 0.25604,
     2020 => 0.25629,
     2021 => 0.25641,
+    2022 => 0.25647,
   }.freeze
 
   # When we import data from OES CS the numbers only includes what the state
