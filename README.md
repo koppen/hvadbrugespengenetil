@@ -10,9 +10,9 @@ At https://www.skm.dk/skattetal/satser/statistik-i-kommunerne/kommuneskatter-gen
 
 Currently we import data in our local database. So the full process is...
 
-1. Download the production database: `bin/db/pull_production`
+1. Download the production database: `script/db/pull_production`
 2. Import data from a source, see below
-3. Push the new data to the production database: `bin/db/push_production`
+3. Push the new data to the production database: `script/db/push_production`
 
 ### From OES CS
 
