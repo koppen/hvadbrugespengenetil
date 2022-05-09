@@ -5,5 +5,5 @@
 
 LOCAL_DATABASE=hvadbrugespengenetil_development
 
-heroku pg:reset DATABASE_URL --remote production
-heroku pg:push $LOCAL_DATABASE DATABASE_URL --remote production
+npx heroku pg:reset DATABASE_URL --remote production
+npx heroku pg:push $LOCAL_DATABASE DATABASE_URL --remote production
