@@ -7,4 +7,4 @@
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
 Hvadbrugespengenetil::Application.config.secret_token = \
-  ENV["SECRET_TOKEN"] || "totally not a secret token"
+  ENV.fetch("SECRET_TOKEN", "totally not a secret token")
