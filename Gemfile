@@ -8,7 +8,7 @@ gem "pg", "< 1.0"
 gem "rails", "~> 4.2.3"
 gem "silent-postgres"
 
-gem "compass-rails", "~> 3.0"
+gem "compass-rails", "4.0.0"
 gem "fancy-buttons"
 gem "haml"
 gem "sass-rails"
