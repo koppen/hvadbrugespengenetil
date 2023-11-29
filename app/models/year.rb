@@ -14,6 +14,8 @@ class Year
     2016 => Source::OesCs,
     2020 => Source::OesCs,
     2021 => Source::Statbank,
+    2022 => Source::OesCs,
+    2023 => Source::OesCs,
   }.freeze
 
   # Returns the most recent year with data
