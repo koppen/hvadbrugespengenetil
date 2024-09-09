@@ -1,13 +1,24 @@
 !!!
 %html
   %head
-    %title Hvad bruges pengene til?
+    %title= content_for(:title) || "Hvad bruges pengene til?"
     %meta{:charset => 'utf-8'}
-    = stylesheet_link_tag 'application', :media => 'screen, projection'
-    = csrf_meta_tag
+    = stylesheet_link_tag 'application', :"data-turbo-track" => "reload", :media => 'screen, projection'
+
+    = csrf_meta_tags
+    = csp_meta_tag
+
     %link{:rel => "shortcut icon" , :href => "/images/icons/blinksale/coin_gold.ico"}
     %link{:rel => "icon" , :type => 'image/png', :href => "/images/icons/blinksale/coin_gold_16.png"}
+    %link{:rel => "apple-touch-icon", :href => "/images/icons/blinksale/coin_gold_16.png"}
+
     %meta{:name => "viewport", :content => "width = 590"}
+    %meta{:name => "apple-mobile-web-app-capable", :content => "yes"}
+
+    = yield :head
+
+    %link{:rel => "manifest", :href => "/manifest.json"}
+
 
   %body
     %article
