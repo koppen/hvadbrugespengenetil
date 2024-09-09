@@ -6,7 +6,6 @@ ruby `cat .ruby-version`.strip
 
 gem "sqlite3", "~> 1.3.6"
 gem "rails", "~> 4.2.3"
-gem "silent-postgres"
 
 gem "compass-rails", "4.0.0"
 gem "fancy-buttons"
