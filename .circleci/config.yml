@@ -4,10 +4,6 @@ jobs:
   tests:
     docker:
       - image: cimg/ruby:3.3.4
-      - image: cimg/postgres:13.6
-
-    environment:
-      DATABASE_URL: "postgres://postgres@localhost:5432/circle_test"
 
     working_directory: ~/repo
 
@@ -36,10 +32,6 @@ jobs:
   build_assets:
     docker:
       - image: cimg/ruby:3.3.4
-      - image: cimg/postgres:13.6
-
-    environment:
-      DATABASE_URL: "postgres://postgres@localhost:5432/circle_test"
 
     working_directory: ~/repo
 
