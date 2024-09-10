@@ -52,11 +52,12 @@ article
     background: $finansministeriet_blue
     background: linear-gradient(top, $finansministeriet_blue 66%, darken($finansministeriet_blue, 10%))
     color: #ffffff
-    padding: 2em 0 1.6em 0
+    padding: 2em 0
     text-align: center
     text-shadow: rgba(0,0,0,0.5) 0.1em 0.1em 0.1em
     h1
       line-height: 1em
+      margin: 0
       a
         &:link, &:visited, &:hover, &:active
           color: #ffffff
@@ -101,11 +102,15 @@ form
     font-size: 1.6em
     cursor: pointer
   button
-    // +fancy-button($finansministeriet_blue)
+    background: $finansministeriet_blue
+    border: 0
+    border-radius: 0.5em
+    color: lighten($finansministeriet_blue, 66%)
     clear: both
     font-size: 1.6em
     font-weight: normal
     margin-top: 0.5em
+    padding: 0.5em 1em
   .amount
     font-family: inherit
     font-size: 1em
@@ -133,6 +138,7 @@ table
   th
     font-weight: bold
     padding-left: 2em
+    text-align: left
     +small-display
       padding-left: 1em
   .amount
