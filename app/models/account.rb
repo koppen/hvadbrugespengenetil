@@ -11,7 +11,7 @@ class Account < ActiveRecord::Base
   # Returns all the top level accounts (ie 'Paragraffer')
   scope :top_level, -> { where(:parent_id => nil) }
 
-  belongs_to :parent, :class_name => name
+  belongs_to :parent, :class_name => name, :optional => true
   has_many :children, :class_name => name, :inverse_of => :parent, :foreign_key => "parent_id"
 
   before_save :remove_abbreviations_from_name
