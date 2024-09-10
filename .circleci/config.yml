@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   tests:
     docker:
-      - image: cimg/ruby:2.6.6
+      - image: cimg/ruby:3.3.4
       - image: cimg/postgres:13.6
 
     environment:
@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Setup database
           command: |
-            gem install bundler:1.17.3
+            gem install bundler:2.5.18
             bundle exec rake db:schema:load
 
       - run:
@@ -35,7 +35,7 @@ jobs:
 
   build_assets:
     docker:
-      - image: cimg/ruby:2.6.6
+      - image: cimg/ruby:3.3.4
       - image: cimg/postgres:13.6
 
     environment:
@@ -57,12 +57,12 @@ jobs:
       - run:
           name: Precompile assets
           command: |
-            gem install bundler:1.17.3
+            gem install bundler:2.5.18
             bundle exec rake assets:precompile
 
   code_quality:
     docker:
-      - image: cimg/ruby:2.6.6
+      - image: cimg/ruby:3.3.4
 
     working_directory: ~/repo
 
@@ -80,12 +80,12 @@ jobs:
       - run:
           name: Lint
           command: |
-            gem install bundler:1.17.3
+            gem install bundler:2.5.18
             script/lint
 
   setup:
     docker:
-      - image: cimg/ruby:2.6.6
+      - image: cimg/ruby:3.3.4
 
     working_directory: ~/repo
 
@@ -103,7 +103,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            gem install bundler:1.17.3
+            gem install bundler:2.5.18
             bundle install --jobs=4 --retry=3 --path vendor/bundle
             bundle clean --force
 
